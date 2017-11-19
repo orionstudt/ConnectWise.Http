@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "connectwise.http", "connectwise.http.csproj", "{9558FA1E-40F5-4E1F-BB72-4105FCF83647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectWise.Http", "ConnectWise.Http.csproj", "{9558FA1E-40F5-4E1F-BB72-4105FCF83647}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

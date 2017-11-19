@@ -12,51 +12,51 @@ namespace ConnectWise.Http.Modules.Service
     {
         private static string module = "service";
 
-        public static DeleteSubModuleChild BoardAutoAssignResources = new DeleteSubModuleChild(module, "boards", "autoAssignResources");
+        public static FullSubModuleChild BoardAutoAssignResources = new FullSubModuleChild(module, "boards", "autoAssignResources");
 
-        public static DeleteSubModuleChild BoardAutoTemplates = new DeleteSubModuleChild(module, "boards", "autoTemplates");
+        public static FullSubModuleChild BoardAutoTemplates = new FullSubModuleChild(module, "boards", "autoTemplates");
 
-        // BoardExcludedMembers
+        public static PartialSubModuleChild BoardExcludedMembers = new PartialSubModuleChild(module, "boards", "excludedMembers");
 
-        // BoardItemAssociations
+        public static UpdateSubModuleGrandChild BoardItemAssociations = new UpdateSubModuleGrandChild(module, "boards", "items", "associations");
 
-        public static DeleteSubModuleChild BoardItems = new DeleteSubModuleChild(module, "boards", "items");
+        public static FullSubModuleChild BoardItems = new FullSubModuleChild(module, "boards", "items");
 
-        public static DeleteSubModuleChild BoardNotifications = new DeleteSubModuleChild(module, "boards", "notifications");
+        public static FullSubModuleChild BoardNotifications = new FullSubModuleChild(module, "boards", "notifications");
 
-        public static DeleteSubModuleChild BoardStatuses = new DeleteSubModuleChild(module, "boards", "statuses");
+        public static FullSubModuleChild BoardStatuses = new FullSubModuleChild(module, "boards", "statuses");
 
-        public static DeleteSubModuleChild BoardSubTypes = new DeleteSubModuleChild(module, "boards", "subtypes");
+        public static FullSubModuleChild BoardSubTypes = new FullSubModuleChild(module, "boards", "subtypes");
 
-        public static DeleteSubModuleChild BoardTeams = new DeleteSubModuleChild(module, "boards", "teams");
+        public static FullSubModuleChild BoardTeams = new FullSubModuleChild(module, "boards", "teams");
 
         public static BaseSubModuleChild BoardTypeSubTypeItemAssociations = new BaseSubModuleChild(module, "boards", "typeSubTimeItemAssociations");
 
-        public static DeleteSubModuleChild BoardTypes = new DeleteSubModuleChild(module, "boards", "types");
+        public static FullSubModuleChild BoardTypes = new FullSubModuleChild(module, "boards", "types");
 
         public static BoardsSubModule Boards = new BoardsSubModule(module, "boards");
 
-        public static DeleteSubModule Codes = new DeleteSubModule(module, "codes");
+        public static FullSubModule Codes = new FullSubModule(module, "codes");
 
         public static UpdateSubModule Impacts = new UpdateSubModule(module, "impacts");
 
-        public static DeleteSubModule KnowledgeBaseArticles = new DeleteSubModule(module, "knowledgeBaseArticles");
+        public static FullSubModule KnowledgeBaseArticles = new FullSubModule(module, "knowledgeBaseArticles");
 
-        // Priorities
+        public static PrioritiesSubModule Priorities = new PrioritiesSubModule(module, "priorities");
 
-        public static DeleteSubModuleChild SLAPriorities = new DeleteSubModuleChild(module, "SLAs", "priorities");
+        public static FullSubModuleChild SLAPriorities = new FullSubModuleChild(module, "SLAs", "priorities");
 
-        public static DeleteSubModule SLAs = new DeleteSubModule(module, "SLAs");
+        public static FullSubModule SLAs = new FullSubModule(module, "SLAs");
 
-        public static DeleteSubModule ServiceEmailTemplates = new DeleteSubModule(module, "emailTemplates");
+        public static FullSubModule ServiceEmailTemplates = new FullSubModule(module, "emailTemplates");
 
-        public static DeleteSubModule Locations = new DeleteSubModule(module, "locations");
+        public static FullSubModule Locations = new FullSubModule(module, "locations");
 
-        public static DeleteSubModule ServiceSignoffs = new DeleteSubModule(module, "serviceSignoff");
+        public static FullSubModule ServiceSignoffs = new FullSubModule(module, "serviceSignoff");
 
-        public static DeleteSubModuleChild ServiceSurveyQuestions = new DeleteSubModuleChild(module, "surveys", "questions");
+        public static FullSubModuleChild ServiceSurveyQuestions = new FullSubModuleChild(module, "surveys", "questions");
 
-        public static DeleteSubModule ServiceSurveys = new DeleteSubModule(module, "surveys");
+        public static FullSubModule ServiceSurveys = new FullSubModule(module, "surveys");
 
         public static BaseSubModule ServiceTeams = new BaseSubModule(module, "teams");
 
@@ -64,19 +64,19 @@ namespace ConnectWise.Http.Modules.Service
 
         public static UpdateSubModule Severities = new UpdateSubModule(module, "severities");
 
-        public static DeleteSubModule Sources = new DeleteSubModule(module, "sources");
+        public static FullSubModule Sources = new FullSubModule(module, "sources");
 
         public static BaseSubModule StatusExternalIntegrationReferences = new BaseSubModule(module, "statusExternalIntegrationReferences");
 
-        // SurveyOptions
+        public static FullSubModuleGrandChild SurveyOptions = new FullSubModuleGrandChild(module, "surveys", "questions", "options");
 
-        public static DeleteSubModuleChild SurveyResults = new DeleteSubModuleChild(module, "surveys", "resuts");
+        public static FullSubModuleChild SurveyResults = new FullSubModuleChild(module, "surveys", "results");
 
-        // TeamMembers
+        public static PartialSubModule TeamMembers = new PartialSubModule(module, "teamMembers");
 
-        public static DeleteSubModuleChild TicketNotes = new DeleteSubModuleChild(module, "tickets", "notes");
+        public static FullSubModuleChild TicketNotes = new FullSubModuleChild(module, "tickets", "notes");
 
-        public static DeleteSubModuleChild TicketTasks = new DeleteSubModuleChild(module, "tickets", "tasks");
+        public static FullSubModuleChild TicketTasks = new FullSubModuleChild(module, "tickets", "tasks");
 
         public static TicketsSubModule Tickets = new TicketsSubModule(module, "tickets");
     }

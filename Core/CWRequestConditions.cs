@@ -54,10 +54,10 @@ namespace ConnectWise.Http
 
         public int? PageSize { get; set; }
 
-        internal string Build(CWConditionOptions options)
+        internal string Build(CWConditionOptions options, bool appendToExisting = false)
         {
             var sb = new StringBuilder();
-            bool didFirst = false;
+            bool didFirst = appendToExisting;
             // Conditions
             if (options.Conditions && Conditions != null && Conditions.Any())
             {
@@ -107,7 +107,8 @@ namespace ConnectWise.Http
                 sb.Append(string.Format("pageSize={0}", PageSize.Value.ToString()));
             }
             // Return
-            if (!didFirst) { return string.Empty; } else { return sb.ToString(); }
+            var final = sb.ToString();
+            return string.IsNullOrWhiteSpace(final) ? string.Empty : final;
         }
 
         private string getConditions()
@@ -161,35 +162,69 @@ namespace ConnectWise.Http
 
         internal CWConditionOptions() { }
 
-        internal static CWConditionOptions StandardConditions()
+        internal static CWConditionOptions StandardConditions
         {
-            return new CWConditionOptions
+            get
             {
-                Conditions = true,
-                ChildConditions = true,
-                CustomFieldConditions = true,
-                OrderBy = true,
-                Fields = true,
-                Page = true,
-                PageSize = true
-            };
+                return new CWConditionOptions
+                {
+                    Conditions = true,
+                    ChildConditions = true,
+                    CustomFieldConditions = true,
+                    OrderBy = true,
+                    Fields = true,
+                    Page = true,
+                    PageSize = true
+                };
+            }
         }
 
-        internal static CWConditionOptions CountConditions()
+        internal static CWConditionOptions CountConditions
         {
-            return new CWConditionOptions
+            get
             {
-                Conditions = true,
-                CustomFieldConditions = true
-            };
+                return new CWConditionOptions
+                {
+                    Conditions = true,
+                    CustomFieldConditions = true
+                };
+            }
         }
 
-        internal static CWConditionOptions OnlyFields()
+        internal static CWConditionOptions OnlyFields
         {
-            return new CWConditionOptions
+            get
             {
-                Fields = true
-            };
+                return new CWConditionOptions
+                {
+                    Fields = true
+                };
+            }
+        }
+
+        internal static CWConditionOptions ConditionsAndPaging
+        {
+            get
+            {
+                return new CWConditionOptions
+                {
+                    Conditions = true,
+                    Page = true,
+                    PageSize = true
+                };
+            }
+        }
+
+        internal static CWConditionOptions Pagination
+        {
+            get
+            {
+                return new CWConditionOptions
+                {
+                    Page = true,
+                    PageSize = true
+                };
+            }
         }
     }
 }

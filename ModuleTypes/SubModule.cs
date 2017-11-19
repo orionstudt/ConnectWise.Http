@@ -42,7 +42,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest GetRequest(CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.StandardConditions()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.StandardConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, string.Format("{0}{1}", getPrefix(), conditionStr));
         }
 
@@ -54,7 +54,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest GetRequest(int id, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, string.Format("{0}/{1}{2}", getPrefix(), id, conditionStr));
         }
 
@@ -65,7 +65,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest CountRequest(CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, string.Format("{0}/count{1}", getPrefix(), conditionStr));
         }
     }
@@ -86,7 +86,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ReplaceRequest(int id, string content, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Put, string.Format("{0}/{1}{2}", getPrefix(), id, conditionStr), content);
         }
 
@@ -99,7 +99,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest UpdateRequest(int id, IEnumerable<CWPatch> updates, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             var patches = updates.Any() ? updates.ToList() : new List<CWPatch>();
             return new CWRequest(CWHttpMethod.Patch, string.Format("{0}/{1}{2}", getPrefix(), id, conditionStr), JsonConvert.SerializeObject(patches));
         }
@@ -120,7 +120,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest CreateRequest(string content, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, string.Format("{0}{1}", getPrefix(), conditionStr));
         }
     }
@@ -128,12 +128,42 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, CREATE, & DELETE.
     /// </summary>
-    public class DeleteSubModule : CreateSubModule
+    public class FullSubModule : CreateSubModule
     {
-        internal DeleteSubModule(string module, string endpoint) : base(module, endpoint) { }
+        internal FullSubModule(string module, string endpoint) : base(module, endpoint) { }
 
         /// <summary>
         /// Generic DELETE request for the entity matching the provided ID.
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public CWRequest DeleteRequest(int id)
+        {
+            return new CWRequest(CWHttpMethod.Delete, string.Format("{0}/{1}", getPrefix(), id));
+        }
+    }
+
+    /// <summary>
+    /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, CREATE & DELETE.
+    /// </summary>
+    public class PartialSubModule : BaseSubModule
+    {
+        internal PartialSubModule(string module, string endpoint) : base(module, endpoint) { }
+
+        /// <summary>
+        /// Generic CREATE request for the specified entity's type.
+        /// </summary>
+        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public CWRequest CreateRequest(string content, CWRequestConditions conditions = null)
+        {
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
+            return new CWRequest(CWHttpMethod.Post, string.Format("{0}{1}", getPrefix(), conditionStr));
+        }
+
+        /// <summary>
+        /// Generic DELETE request for the specified entity matching the provided ID.
         /// </summary>
         /// <param name="id">The specified entity ID.</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>

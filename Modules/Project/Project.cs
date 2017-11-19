@@ -11,14 +11,17 @@ namespace ConnectWise.Http.Modules.Project
     {
         private static string module = "project";
 
-        public static DeleteSubModuleChild ProjectNotes = new DeleteSubModuleChild(module, "projects", "notes");
+        // Doesn't support COUNT
+        public static PartialSubModuleChild ProjectContacts = new PartialSubModuleChild(module, "projects", "contacts");
 
-        public static DeleteSubModuleChild ProjectPhases = new DeleteSubModuleChild(module, "projects", "phases");
+        public static FullSubModuleChild ProjectNotes = new FullSubModuleChild(module, "projects", "notes");
 
-        public static DeleteSubModule ProjectStatuses = new DeleteSubModule(module, "statuses");
+        public static FullSubModuleChild ProjectPhases = new FullSubModuleChild(module, "projects", "phases");
 
-        public static DeleteSubModule Projects = new DeleteSubModule(module, "projects");
+        public static FullSubModule ProjectStatuses = new FullSubModule(module, "statuses");
 
-        public static DeleteSubModuleChild ProjectTeammembers = new DeleteSubModuleChild(module, "projects", "teamMembers");
+        public static FullSubModule Projects = new FullSubModule(module, "projects");
+
+        public static FullSubModuleChild ProjectTeammembers = new FullSubModuleChild(module, "projects", "teamMembers");
     }
 }

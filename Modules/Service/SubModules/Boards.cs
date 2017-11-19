@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Service.SubModules
 {
-    public class BoardsSubModule : DeleteSubModule
+    public class BoardsSubModule : FullSubModule
     {
         internal BoardsSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -19,7 +19,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest CopyRequest(string content, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields()) : string.Empty;
+            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, string.Format("{0}/copy{1}", getPrefix(), conditionStr), content);
         }
     }

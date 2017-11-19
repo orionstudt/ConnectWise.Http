@@ -7,8 +7,8 @@
     <ProjectGuid>{9558FA1E-40F5-4E1F-BB72-4105FCF83647}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>connectwise.http</RootNamespace>
-    <AssemblyName>connectwise.http</AssemblyName>
+    <RootNamespace>ConnectWise.Http</RootNamespace>
+    <AssemblyName>ConnectWise.Http</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -55,7 +55,9 @@
     <Compile Include="CWHttpClient.cs" />
     <Compile Include="Core\CWHttpMethod.cs" />
     <Compile Include="Modules\Service\SubModules\Boards.cs" />
+    <Compile Include="Modules\Service\SubModules\Priorities.cs" />
     <Compile Include="ModuleTypes\SubModuleChild.cs" />
+    <Compile Include="ModuleTypes\SubModuleGrandChild.cs" />
     <Compile Include="Settings\CWApiSettings.cs" />
     <Compile Include="Core\CWResponse.cs" />
     <Compile Include="Settings\IntegratorAuthSettings.cs" />
