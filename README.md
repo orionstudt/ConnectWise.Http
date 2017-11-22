@@ -69,4 +69,4 @@ Below are the modules currently implemented. You can use the CWRequest object to
 |Schedule    |No         |
 |Service     |**Yes**    |
 |System      |No         |
-|Time        |No         |
+|Time        |*Partial*  |
