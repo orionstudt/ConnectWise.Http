@@ -53,3 +53,20 @@ int ticketId = 121;
 var request = ServiceModule.Tickets.UpdateRequest(ticketId, operations);
 var response = await client.SendAsync(request);
 ```
+
+### Modules
+Below are the modules currently implemented. You can use the CWRequest object to specify specific endpoints not yet supported here - These serve only to simplify the creation of the request URI.
+
+|   Modules  | Supported |
+|------------|:---------:|
+|Company     |No         |
+|Expense     |No         |
+|Finance     |No         |
+|Marketing   |No         |
+|Procurement |No         |
+|Project     |**Yes**    |
+|Sales       |No         |
+|Schedule    |No         |
+|Service     |**Yes**    |
+|System      |No         |
+|Time        |No         |
