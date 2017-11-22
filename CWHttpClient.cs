@@ -28,7 +28,6 @@ namespace ConnectWise.Http
         private const string version = "3.0";
         private const string accept = "application/vnd.connectwise.com+json; version=3.0.0";
         private HttpClient client;
-        private bool hasInternalClient;
 
         /// <summary>
         /// HttpClient used to make requests to a ConnectWise Manage API.
@@ -37,7 +36,6 @@ namespace ConnectWise.Http
         public CWHttpClient(CWApiSettings settings)
         {
             // Passthrough
-            hasInternalClient = true;
             companyName = settings.CompanyName;
             domain = settings.Domain;
             cookieValue = settings.CookieValue;
@@ -53,7 +51,6 @@ namespace ConnectWise.Http
         public CWHttpClient(CWApiSettings settings, HttpClient client)
         {
             // Passthrough
-            hasInternalClient = false;
             this.client = client;
             companyName = settings.CompanyName;
             domain = settings.Domain;
@@ -75,30 +72,7 @@ namespace ConnectWise.Http
             }
 
             // Build Request
-            HttpRequestMessage httpRequest;
-            switch (request.Method)
-            {
-                case CWHttpMethod.Post:
-                    httpRequest = defaultRequest(request);
-                    httpRequest.Method = HttpMethod.Post;
-                    break;
-                case CWHttpMethod.Put:
-                    httpRequest = defaultRequest(request);
-                    httpRequest.Method = HttpMethod.Put;
-                    break;
-                case CWHttpMethod.Patch:
-                    httpRequest = defaultRequest(request);
-                    httpRequest.Method = new HttpMethod("PATCH");
-                    break;
-                case CWHttpMethod.Delete:
-                    httpRequest = defaultRequest(request);
-                    httpRequest.Method = HttpMethod.Delete;
-                    break;
-                default:
-                    httpRequest = defaultRequest(request);
-                    httpRequest.Method = HttpMethod.Get;
-                    break;
-            }
+            HttpRequestMessage httpRequest = buildRequest(request);
 
             // Make Request
             HttpResponseMessage response = null;
@@ -124,7 +98,7 @@ namespace ConnectWise.Http
             return new CWResponse(false, "There was an error making the request to the CW Manage API.");
         }
 
-        private HttpRequestMessage defaultRequest(CWRequest request)
+        private HttpRequestMessage buildRequest(CWRequest request)
         {
             // Build Request
             var httpRequest = new HttpRequestMessage
@@ -138,6 +112,25 @@ namespace ConnectWise.Http
             httpRequest.Headers.TryAddWithoutValidation("Accept", accept);
             httpRequest.Headers.Authorization = auth;
             if (!string.IsNullOrWhiteSpace(cookieValue)) { httpRequest.Headers.TryAddWithoutValidation("Cookie", string.Concat("cw-app-id=", cookieValue)); }
+            // Method
+            switch (request.Method)
+            {
+                case CWHttpMethod.Post:
+                    httpRequest.Method = HttpMethod.Post;
+                    break;
+                case CWHttpMethod.Put:
+                    httpRequest.Method = HttpMethod.Put;
+                    break;
+                case CWHttpMethod.Patch:
+                    httpRequest.Method = new HttpMethod("PATCH");
+                    break;
+                case CWHttpMethod.Delete:
+                    httpRequest.Method = HttpMethod.Delete;
+                    break;
+                default:
+                    httpRequest.Method = HttpMethod.Get;
+                    break;
+            }
             // Return
             return httpRequest;
         }
