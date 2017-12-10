@@ -3,7 +3,7 @@ A .Net HttpClient wrapper for interacting with the ConnectWise Manage REST API.
 
 # Installation
 ```
-NuGet PM> Install-Package ConnectWise.Http -Version 1.0.0.1
+NuGet PM> Install-Package ConnectWise.Http -Version 1.0.2
 ```
 
 # Usage
