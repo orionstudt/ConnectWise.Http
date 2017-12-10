@@ -54,9 +54,14 @@
     <Compile Include="Core\CWPatch.cs" />
     <Compile Include="CWHttpClient.cs" />
     <Compile Include="Core\CWHttpMethod.cs" />
+    <Compile Include="Modules\Company\Company.cs" />
+    <Compile Include="Modules\Schedule\Schedule.cs" />
+    <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />
     <Compile Include="Modules\Service\SubModules\Boards.cs" />
     <Compile Include="Modules\Service\SubModules\Priorities.cs" />
     <Compile Include="Modules\Time\SubModules\TimeEntries.cs" />
+    <Compile Include="Modules\Time\SubModules\TimePeriodSetups.cs" />
+    <Compile Include="Modules\Time\SubModules\TimeSheets.cs" />
     <Compile Include="Modules\Time\Time.cs" />
     <Compile Include="ModuleTypes\SubModuleChild.cs" />
     <Compile Include="ModuleTypes\SubModuleGrandChild.cs" />
