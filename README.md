@@ -64,14 +64,14 @@ Below are the modules currently implemented. You can use the CWRequest object to
 
 |   Modules  | Supported |
 |------------|:---------:|
-|Company     |No         |
+|Company     |*Partial*  |
 |Expense     |No         |
 |Finance     |No         |
 |Marketing   |No         |
 |Procurement |No         |
 |Project     |**Yes**    |
 |Sales       |No         |
-|Schedule    |No         |
+|Schedule    |**Yes**    |
 |Service     |**Yes**    |
 |System      |No         |
-|Time        |*Partial*  |
+|Time        |**Yes**    |

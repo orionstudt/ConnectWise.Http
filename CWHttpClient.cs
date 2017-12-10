@@ -64,7 +64,7 @@ namespace ConnectWise.Http
             if (Info == null)
             {
                 // Need Company Info
-                var infoResponse = await getCompanyInfo(cts);
+                var infoResponse = await getCompanyInfoAsync(cts);
                 if (!infoResponse.IsSuccessful)
                 {
                     return infoResponse;
@@ -135,7 +135,7 @@ namespace ConnectWise.Http
             return httpRequest;
         }
 
-        private async Task<CWResponse> getCompanyInfo(CancellationTokenSource cts = null)
+        private async Task<CWResponse> getCompanyInfoAsync(CancellationTokenSource cts = null)
         {
             // Determine client
             if (client == null) { client = new HttpClient(); }
