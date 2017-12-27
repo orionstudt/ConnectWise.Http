@@ -17,7 +17,7 @@ namespace ConnectWise.Http.Modules.Time.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest DefaultRequest()
         {
-            return new CWRequest(CWHttpMethod.Get, string.Concat(getPrefix(), "/default"));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/default");
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http
 {
-    public class MemberAuthSettings : ICWAuthSettings
+    public class MemberAuthSettings : IAuthSettings
     {
         private string publicKey;
         private string privateKey;
@@ -22,8 +22,7 @@ namespace ConnectWise.Http
         {
             return new AuthenticationHeaderValue(
                             "Basic", Convert.ToBase64String(
-                                Encoding.ASCII.GetBytes(
-                                    string.Format("{0}+{1}:{2}", companyName, publicKey, privateKey))));
+                                Encoding.ASCII.GetBytes($"{companyName}+{publicKey}:{privateKey}")));
         }
     }
 }

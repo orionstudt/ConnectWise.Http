@@ -80,7 +80,7 @@ namespace ConnectWise.Http
             if (options.OrderBy && !string.IsNullOrWhiteSpace(OrderBy))
             {
                 if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(string.Format("orderBy={0}", OrderBy.Trim(' ').Replace(" ", "%20")));
+                sb.Append($"orderBy={OrderBy.Trim(' ').Replace(" ", "%20")}");
             }
             // Fields
             if (options.Fields && Fields != null && Fields.Any())
@@ -98,13 +98,13 @@ namespace ConnectWise.Http
             if (options.Page && Page.HasValue)
             {
                 if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(string.Format("page={0}", Page.Value.ToString()));
+                sb.Append($"page={Page.Value.ToString()}");
             }
             // PageSize
             if (options.PageSize && PageSize.HasValue)
             {
                 if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(string.Format("pageSize={0}", PageSize.Value.ToString()));
+                sb.Append($"pageSize={PageSize.Value.ToString()}");
             }
             // Return
             var final = sb.ToString();

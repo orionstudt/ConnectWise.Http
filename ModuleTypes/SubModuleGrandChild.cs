@@ -28,7 +28,7 @@ namespace ConnectWise.Http.ModuleTypes
 
         protected string getPrefix(int id, int childId)
         {
-            return string.Format("{0}/{1}/{2}/{3}/{4}/{5}", module, endpoint, id, child, childId, grandChild);
+            return $"{module}/{endpoint}/{id}/{child}/{childId}/{grandChild}";
         }
     }
 
@@ -49,7 +49,7 @@ namespace ConnectWise.Http.ModuleTypes
         public CWRequest GetRequest(int id, int childId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.StandardConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}{1}", getPrefix(id, childId), conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}{conditionStr}");
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace ConnectWise.Http.ModuleTypes
         public CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/{1}{2}", getPrefix(id, childId), grandChildId, conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}");
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace ConnectWise.Http.ModuleTypes
         public CWRequest CountRequest(int id, int childId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/count{1}", getPrefix(id, childId), conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/count{conditionStr}");
         }
     }
 
@@ -99,7 +99,7 @@ namespace ConnectWise.Http.ModuleTypes
         public CWRequest ReplaceRequest(int id, int childId, int grandChildId, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Put, string.Format("{0}/{1}{2}", getPrefix(id, childId), grandChildId, conditionStr), content);
+            return new CWRequest(CWHttpMethod.Put, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", content);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace ConnectWise.Http.ModuleTypes
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             var patches = updates.Any() ? updates.ToList() : new List<CWPatch>();
-            return new CWRequest(CWHttpMethod.Patch, string.Format("{0}/{1}{2}", getPrefix(id, childId), grandChildId, conditionStr), JsonConvert.SerializeObject(patches));
+            return new CWRequest(CWHttpMethod.Patch, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", JsonConvert.SerializeObject(patches));
         }
     }
 
@@ -137,7 +137,7 @@ namespace ConnectWise.Http.ModuleTypes
         public CWRequest CreateRequest(int id, int childId, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}{1}", getPrefix(id, childId), conditionStr));
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}");
         }
     }
 
@@ -157,7 +157,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest DeleteRequest(int id, int childId, int grandChildId)
         {
-            return new CWRequest(CWHttpMethod.Delete, string.Format("{0}/{1}", getPrefix(id, childId), grandChildId));
+            return new CWRequest(CWHttpMethod.Delete, $"{getPrefix(id, childId)}/{grandChildId}");
         }
     }
 }

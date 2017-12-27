@@ -76,7 +76,7 @@
     <Compile Include="Modules\Project\Project.cs" />
     <Compile Include="Modules\Service\Service.cs" />
     <Compile Include="Modules\Service\SubModules\Tickets.cs" />
-    <Compile Include="Settings\ICWAuthSettings.cs" />
+    <Compile Include="Settings\IAuthSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

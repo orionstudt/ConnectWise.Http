@@ -18,7 +18,7 @@ namespace ConnectWise.Http.Modules.Schedule.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ClearRequest(int colorId)
         {
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}/{1}/clear", getPrefix(), colorId));
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{colorId}/clear");
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace ConnectWise.Http.Modules.Schedule.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ResetRequest()
         {
-            return new CWRequest(CWHttpMethod.Post, string.Concat(getPrefix(), "/reset"));
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/reset");
         }
     }
 }

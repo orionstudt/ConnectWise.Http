@@ -21,9 +21,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest ActivitiesRequest(int ticketId, CWRequestConditions conditions = null)
         {
             if (conditions == null) { conditions = new CWRequestConditions(); }
-            conditions.Conditions = new string[] { string.Format("ticket/id={0}", ticketId) };
+            conditions.Conditions = new string[] { $"ticket/id={ticketId}" };
             string conditionStr = conditions.Build(CWConditionOptions.ConditionsAndPaging);
-            return new CWRequest(CWHttpMethod.Get, string.Format("sales/activities{1}", conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"sales/activities{conditionStr}");
         }
 
         /// <summary>
@@ -35,9 +35,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         {
             var conditions = new CWRequestConditions
             {
-                Conditions = new string[] { string.Format("ticket/id={0}", ticketId) }
+                Conditions = new string[] { $"ticket/id={ticketId}" }
             };
-            return new CWRequest(CWHttpMethod.Get, string.Format("sales/activities/count{0}", conditions.Build(CWConditionOptions.ConditionsAndPaging)));
+            return new CWRequest(CWHttpMethod.Get, $"sales/activities/count{conditions.Build(CWConditionOptions.ConditionsAndPaging)}");
         }
 
         /// <summary>
@@ -49,9 +49,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest TimeEntriesRequest(int ticketId, CWRequestConditions conditions = null)
         {
             if (conditions == null) { conditions = new CWRequestConditions(); }
-            conditions.Conditions = new string[] { "(chargeToType=\"ServiceTicket\" OR chargeToType=\"ProjectTicket\")", string.Format("chargeToId={0}", ticketId) };
+            conditions.Conditions = new string[] { "(chargeToType=\"ServiceTicket\" OR chargeToType=\"ProjectTicket\")", $"chargeToId={ticketId}" };
             string conditionStr = conditions.Build(CWConditionOptions.ConditionsAndPaging);
-            return new CWRequest(CWHttpMethod.Get, string.Format("time/entries{1}", conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"time/entries{conditionStr}");
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         {
             var conditions = new CWRequestConditions
             {
-                Conditions = new string[] { "(chargeToType=\"ServiceTicket\" OR chargeToType=\"ProjectTicket\")", string.Format("chargeToId={0}", ticketId) }
+                Conditions = new string[] { "(chargeToType=\"ServiceTicket\" OR chargeToType=\"ProjectTicket\")", $"chargeToId={ticketId}" }
             };
-            return new CWRequest(CWHttpMethod.Get, string.Format("time/entries/count{0}", conditions.Build(CWConditionOptions.ConditionsAndPaging)));
+            return new CWRequest(CWHttpMethod.Get, $"time/entries/count{conditions.Build(CWConditionOptions.ConditionsAndPaging)}");
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest ScheduleEntriesRequest(int ticketId, CWRequestConditions conditions = null)
         {
             if (conditions == null) { conditions = new CWRequestConditions(); }
-            conditions.Conditions = new string[] { "type/id=4", string.Format("objectId={0}", ticketId) };
+            conditions.Conditions = new string[] { "type/id=4", $"objectId={ticketId}" };
             string conditionStr = conditions.Build(CWConditionOptions.ConditionsAndPaging);
-            return new CWRequest(CWHttpMethod.Get, string.Format("schedule/entries{1}", conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"schedule/entries{conditionStr}");
         }
 
         /// <summary>
@@ -91,9 +91,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         {
             var conditions = new CWRequestConditions
             {
-                Conditions = new string[] { "type/id=4", string.Format("objectId={0}", ticketId) }
+                Conditions = new string[] { "type/id=4", $"objectId={ticketId}" }
             };
-            return new CWRequest(CWHttpMethod.Get, string.Format("schedule/entries/count{0}", conditions.Build(CWConditionOptions.ConditionsAndPaging)));
+            return new CWRequest(CWHttpMethod.Get, $"schedule/entries/count{conditions.Build(CWConditionOptions.ConditionsAndPaging)}");
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest DocumentsRequest(int ticketId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.Pagination, appendToExisting: true) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, string.Format("system/documents?recordType=Ticket&recordId={0}{1}", ticketId, conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"system/documents?recordType=Ticket&recordId={ticketId}{conditionStr}");
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest DocumentsCountRequest(int ticketId)
         {
-            return new CWRequest(CWHttpMethod.Get, string.Format("system/documents/count?recordType=Ticket&recordId={0}", ticketId));
+            return new CWRequest(CWHttpMethod.Get, $"system/documents/count?recordType=Ticket&recordId={ticketId}");
         }
 
         /// <summary>
@@ -127,9 +127,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest ProductsRequest(int ticketId, CWRequestConditions conditions = null)
         {
             if (conditions == null) { conditions = new CWRequestConditions(); }
-            conditions.Conditions = new string[] { "chargeToType=\"Ticket\"", string.Format("chargeToId={0}", ticketId) };
+            conditions.Conditions = new string[] { "chargeToType=\"Ticket\"", $"chargeToId={ticketId}" };
             string conditionStr = conditions.Build(CWConditionOptions.ConditionsAndPaging);
-            return new CWRequest(CWHttpMethod.Get, string.Format("procurement/products{1}", conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"procurement/products{conditionStr}");
         }
 
         /// <summary>
@@ -141,9 +141,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         {
             var conditions = new CWRequestConditions
             {
-                Conditions = new string[] { "chargeToType=\"Ticket\"", string.Format("chargeToId={0}", ticketId) }
+                Conditions = new string[] { "chargeToType=\"Ticket\"", $"chargeToId={ticketId}" }
             };
-            return new CWRequest(CWHttpMethod.Get, string.Format("procurement/products/count{0}", conditions.Build(CWConditionOptions.ConditionsAndPaging)));
+            return new CWRequest(CWHttpMethod.Get, $"procurement/products/count{conditions.Build(CWConditionOptions.ConditionsAndPaging)}");
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         public CWRequest ConfigurationsRequest(int ticketId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.Pagination) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/{1}/configurations{2}", getPrefix(), ticketId, conditionStr));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{ticketId}/configurations{conditionStr}");
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ConfigurationsRequest(int ticketId, int configId)
         {
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/{1}/configurations/{2}", getPrefix(), ticketId, configId));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{ticketId}/configurations/{configId}");
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ConfigurationsCountRequest(int ticketId)
         {
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/{1}/configurations/count", getPrefix(), ticketId));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{ticketId}/configurations/count");
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ConfigurationCreateRequest(int ticketId, string content)
         {
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}/{1}/configurations", getPrefix(), ticketId), content);
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{ticketId}/configurations", content);
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ConfigurationDeleteRequest(int ticketId, int configId)
         {
-            return new CWRequest(CWHttpMethod.Delete, string.Format("{0}/{1}/configurations/{2}", getPrefix(), ticketId, configId));
+            return new CWRequest(CWHttpMethod.Delete, $"{getPrefix()}/{ticketId}/configurations/{configId}");
         }
 
         /// <summary>
@@ -209,7 +209,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest MergeRequest(int ticketId, string content)
         {
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}/{1}/merge", getPrefix(), ticketId), content);
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{ticketId}/merge", content);
         }
     }
 }

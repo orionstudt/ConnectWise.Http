@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Options
 {
-    public class IntegratorAuthSettings : ICWAuthSettings
+    public class IntegratorAuthSettings : IAuthSettings
     {
         private string login;
         private string password;
@@ -22,8 +22,7 @@ namespace ConnectWise.Http.Options
         {
             return new AuthenticationHeaderValue(
                             "Basic", Convert.ToBase64String(
-                                Encoding.ASCII.GetBytes(
-                                    string.Format("{0}+{1}:{2}", companyName, login, password))));
+                                Encoding.ASCII.GetBytes($"{companyName}+{login}:{password}")));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace ConnectWise.Http.Modules.Time.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest SubmitRequest(int timeSheetId)
         {
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}/{1}/submit", getPrefix(), timeSheetId));
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{timeSheetId}/submit");
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace ConnectWise.Http.Modules.Time.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ReverseRequest(int timeSheetId)
         {
-            return new CWRequest(CWHttpMethod.Post, string.Format("{0}/{1}/reverse", getPrefix(), timeSheetId));
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{timeSheetId}/reverse");
         }
     }
 }

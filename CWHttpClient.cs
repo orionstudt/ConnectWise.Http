@@ -103,7 +103,7 @@ namespace ConnectWise.Http
             // Build Request
             var httpRequest = new HttpRequestMessage
             {
-                RequestUri = new Uri(string.Format("{0}/{1}/apis/{2}/{3}", domain, Info.Codebase, version, request.Endpoint)),
+                RequestUri = new Uri($"{domain}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
             };
             // Content
             if (request.Content != null) { httpRequest.Content = request.Content; }
@@ -143,7 +143,7 @@ namespace ConnectWise.Http
             // Build request
             var request = new HttpRequestMessage
             {
-                RequestUri = new Uri(string.Concat(domain.TrimEnd('/'), "/login/companyinfo/", companyName))
+                RequestUri = new Uri($"{domain.TrimEnd('/')}/login/companyInfo/{companyName}")
             };
             request.Headers.Clear();
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));

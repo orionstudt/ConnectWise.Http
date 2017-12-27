@@ -19,7 +19,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ImageRequest(int id)
         {
-            return new CWRequest(CWHttpMethod.Get, string.Format("{0}/image", getPrefix()));
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/image");
         }
     }
 }
