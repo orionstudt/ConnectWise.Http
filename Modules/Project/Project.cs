@@ -1,4 +1,5 @@
-﻿using ConnectWise.Http.ModuleTypes;
+﻿using ConnectWise.Http.Modules.Project.SubModules;
+using ConnectWise.Http.ModuleTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,7 @@ namespace ConnectWise.Http.Modules.Project
     {
         private static string module = "project";
 
-        // Doesn't support COUNT
-        public static PartialSubModuleChild ProjectContacts = new PartialSubModuleChild(module, "projects", "contacts");
+        public static ProjectContactsSubModule ProjectContacts = new ProjectContactsSubModule(module, "projects", "contacts");
 
         public static FullSubModuleChild ProjectNotes = new FullSubModuleChild(module, "projects", "notes");
 

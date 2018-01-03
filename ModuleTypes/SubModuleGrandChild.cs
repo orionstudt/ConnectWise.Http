@@ -46,7 +46,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="childId">The specified entity's child ID.</param>
         /// <param name="conditions">Standard CW Manage API conditions to be appended to the end of the request URL.</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest GetRequest(int id, int childId, CWRequestConditions conditions = null)
+        public virtual CWRequest GetRequest(int id, int childId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.StandardConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}{conditionStr}");
@@ -60,7 +60,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="grandChildId">The specified entity's grandchild ID.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
+        public virtual CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}");
@@ -73,7 +73,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="childId">The specified entity's child ID.</param>
         /// <param name="conditions">This endpoint only accepts 'Conditions' and 'CustomFieldConditions.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest CountRequest(int id, int childId, CWRequestConditions conditions = null)
+        public virtual CWRequest CountRequest(int id, int childId, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/count{conditionStr}");
@@ -96,7 +96,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="content">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest ReplaceRequest(int id, int childId, int grandChildId, string content, CWRequestConditions conditions = null)
+        public virtual CWRequest ReplaceRequest(int id, int childId, int grandChildId, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Put, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", content);
@@ -111,7 +111,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="updates">The list of Patch operations to be applied to the specified entity.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest UpdateRequest(int id, int childId, int grandChildId, IEnumerable<CWPatch> updates, CWRequestConditions conditions = null)
+        public virtual CWRequest UpdateRequest(int id, int childId, int grandChildId, IEnumerable<CWPatch> updates, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
             var patches = updates.Any() ? updates.ToList() : new List<CWPatch>();
@@ -134,7 +134,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="content">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest CreateRequest(int id, int childId, string content, CWRequestConditions conditions = null)
+        public virtual CWRequest CreateRequest(int id, int childId, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}");
@@ -155,7 +155,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="childId">The specified entity's child ID.</param>
         /// <param name="grandChildId">The specified entity's grandchild ID.</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public CWRequest DeleteRequest(int id, int childId, int grandChildId)
+        public virtual CWRequest DeleteRequest(int id, int childId, int grandChildId)
         {
             return new CWRequest(CWHttpMethod.Delete, $"{getPrefix(id, childId)}/{grandChildId}");
         }

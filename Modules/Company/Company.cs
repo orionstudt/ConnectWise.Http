@@ -1,4 +1,5 @@
-﻿using ConnectWise.Http.ModuleTypes;
+﻿using ConnectWise.Http.Modules.Company.SubModules;
+using ConnectWise.Http.ModuleTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace ConnectWise.Http.Modules.Company
 
         public static FullSubModule AddressFormats = new FullSubModule(module, "addressFormats");
 
-        // Companies
+        public static CompaniesSubModule Companies = new CompaniesSubModule(module, "companies");
 
-        // CompanyCustomNotes
+        public static FullSubModuleChild CompanyCustomNotes = new FullSubModuleChild(module, "companies", "customStatusNotes");
 
         public static FullSubModuleChild CompanyGroups = new FullSubModuleChild(module, "companies", "groups");
 
@@ -25,7 +26,7 @@ namespace ConnectWise.Http.Modules.Company
 
         public static FullSubModuleChild CompanyNotes = new FullSubModuleChild(module, "companies", "notes");
 
-        // CompanyPickerItems
+        public static CompanyPickerItemsSubModule CompanyPickerItems = new CompanyPickerItemsSubModule(module, "companyPickerItems");
 
         public static FullSubModuleChild CompanySites = new FullSubModuleChild(module, "companies", "sites");
 
@@ -59,7 +60,7 @@ namespace ConnectWise.Http.Modules.Company
 
         public static FullSubModule ContactTypes = new FullSubModule(module, "contacts/types");
 
-        // Contacts
+        public static ContactsSubModule Contacts = new ContactsSubModule(module, "contacts");
 
         public static FullSubModule Countries = new FullSubModule(module, "countries");
 
