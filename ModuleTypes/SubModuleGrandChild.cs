@@ -11,7 +11,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// GrandChild-Module endpoint class.
     /// GrandChild-Module in this context means the endpoint path is /[module]/[subModule]/{id}/[childModule]/{childId}/[grandChildModule]/{grandChildId?}
     /// </summary>
-    internal class SubModuleGrandChild
+    public class SubModuleGrandChild
     {
         private string module;
         private string endpoint;
@@ -35,7 +35,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// GrandChild-Module endpoint class that contains GET, GETBYID, & COUNT.
     /// </summary>
-    internal class BaseSubModuleGrandChild : SubModuleGrandChild
+    public class BaseSubModuleGrandChild : SubModuleGrandChild
     {
         internal BaseSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
 
@@ -83,7 +83,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// GrandChild-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, & UPDATE.
     /// </summary>
-    internal class UpdateSubModuleGrandChild : BaseSubModuleGrandChild
+    public class UpdateSubModuleGrandChild : BaseSubModuleGrandChild
     {
         internal UpdateSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
 
@@ -122,7 +122,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// GrandChild-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, & CREATE.
     /// </summary>
-    internal class CreateSubModuleGrandChild : UpdateSubModuleGrandChild
+    public class CreateSubModuleGrandChild : UpdateSubModuleGrandChild
     {
         internal CreateSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
 
@@ -144,7 +144,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// GrandChild-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, CREATE, & DELETE.
     /// </summary>
-    internal class FullSubModuleGrandChild : CreateSubModuleGrandChild
+    public class FullSubModuleGrandChild : CreateSubModuleGrandChild
     {
         internal FullSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
 

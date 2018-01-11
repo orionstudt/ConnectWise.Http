@@ -55,6 +55,10 @@
     <Compile Include="CWHttpClient.cs" />
     <Compile Include="Core\CWHttpMethod.cs" />
     <Compile Include="Modules\Company\Company.cs" />
+    <Compile Include="Modules\Company\SubModules\Companies.cs" />
+    <Compile Include="Modules\Company\SubModules\CompanyPickerItems.cs" />
+    <Compile Include="Modules\Company\SubModules\Contacts.cs" />
+    <Compile Include="Modules\Project\SubModules\ProjectContacts.cs" />
     <Compile Include="Modules\Schedule\Schedule.cs" />
     <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />
     <Compile Include="Modules\Service\SubModules\Boards.cs" />
@@ -79,9 +83,7 @@
     <Compile Include="Settings\IAuthSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Project\SubModules\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

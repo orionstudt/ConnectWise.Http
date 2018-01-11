@@ -11,7 +11,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// Child-Module endpoint class.
     /// Child-Module in this context means the endpoint path is /[module]/[subModule]/{id}/[childModule]/{childId?}
     /// </summary>
-    internal class SubModuleChild
+    public class SubModuleChild
     {
         private string module;
         private string endpoint;
@@ -33,7 +33,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID.
     /// </summary>
-    internal class PartialBaseSubModuleChild : SubModuleChild
+    public class PartialBaseSubModuleChild : SubModuleChild
     {
         internal PartialBaseSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
@@ -66,7 +66,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID, & COUNT.
     /// </summary>
-    internal class BaseSubModuleChild : PartialBaseSubModuleChild
+    public class BaseSubModuleChild : PartialBaseSubModuleChild
     {
         internal BaseSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
@@ -86,7 +86,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, & UPDATE.
     /// </summary>
-    internal class UpdateSubModuleChild : BaseSubModuleChild
+    public class UpdateSubModuleChild : BaseSubModuleChild
     {
         internal UpdateSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
@@ -123,7 +123,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, & CREATE.
     /// </summary>
-    internal class CreateSubModuleChild : UpdateSubModuleChild
+    public class CreateSubModuleChild : UpdateSubModuleChild
     {
         internal CreateSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
@@ -144,7 +144,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, CREATE, & DELETE.
     /// </summary>
-    internal class FullSubModuleChild : CreateSubModuleChild
+    public class FullSubModuleChild : CreateSubModuleChild
     {
         internal FullSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
@@ -163,7 +163,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Child-Module endpoint class that contains GET, GETBYID, COUNT, CREATE & DELETE.
     /// </summary>
-    internal class PartialSubModuleChild : BaseSubModuleChild
+    public class PartialSubModuleChild : BaseSubModuleChild
     {
         internal PartialSubModuleChild(string module, string endpoint, string child) : base(module, endpoint, child) { }
 
