@@ -7,19 +7,20 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Contains Contract Resolvers for deserializing JSON into an object with private setters.
+/// </summary>
 namespace ConnectWise.Http.Json
 {
     internal class PrivateSetterContractResolver : DefaultContractResolver
     {
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
-            var jProperty = base.CreateProperty(member, memberSerialization);
-            if (jProperty.Writable)
-                return jProperty;
+            var prop = base.CreateProperty(member, memberSerialization);
+            if (prop.Writable) { return prop; }
 
-            jProperty.Writable = member.IsPropertyWithSetter();
-
-            return jProperty;
+            prop.Writable = member.IsPropertyWithSetter();
+            return prop;
         }
     }
 
@@ -27,13 +28,11 @@ namespace ConnectWise.Http.Json
     {
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
-            var jProperty = base.CreateProperty(member, memberSerialization);
-            if (jProperty.Writable)
-                return jProperty;
+            var prop = base.CreateProperty(member, memberSerialization);
+            if (prop.Writable) { return prop; }
 
-            jProperty.Writable = member.IsPropertyWithSetter();
-
-            return jProperty;
+            prop.Writable = member.IsPropertyWithSetter();
+            return prop;
         }
     }
 
@@ -42,8 +41,8 @@ namespace ConnectWise.Http.Json
         internal static bool IsPropertyWithSetter(this MemberInfo member)
         {
             var property = member as PropertyInfo;
-
-            return property?.GetSetMethod(true) != null;
+            if (property == null) { return false; }
+            return property.GetSetMethod(true) != null;
         }
     }
 }

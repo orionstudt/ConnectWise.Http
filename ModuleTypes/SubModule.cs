@@ -11,7 +11,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// Sub-Module endpoint class.
     /// Sub-Module in this context means the endpoint path is /[module]/[subModule]/{id?}
     /// </summary>
-    public class SubModule
+    internal class SubModule
     {
         private string module;
         private string endpoint;
@@ -31,7 +31,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, & COUNT.
     /// </summary>
-    public class BaseSubModule : SubModule
+    internal class BaseSubModule : SubModule
     {
         internal BaseSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -73,7 +73,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, & UPDATE.
     /// </summary>
-    public class UpdateSubModule : BaseSubModule
+    internal class UpdateSubModule : BaseSubModule
     {
         internal UpdateSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -108,7 +108,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, & CREATE.
     /// </summary>
-    public class CreateSubModule : UpdateSubModule
+    internal class CreateSubModule : UpdateSubModule
     {
         internal CreateSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -128,7 +128,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, UPDATE, CREATE, & DELETE.
     /// </summary>
-    public class FullSubModule : CreateSubModule
+    internal class FullSubModule : CreateSubModule
     {
         internal FullSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -146,7 +146,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, CREATE & DELETE.
     /// </summary>
-    public class PartialSubModule : BaseSubModule
+    internal class PartialSubModule : BaseSubModule
     {
         internal PartialSubModule(string module, string endpoint) : base(module, endpoint) { }
 
