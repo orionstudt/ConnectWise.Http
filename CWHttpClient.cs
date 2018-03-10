@@ -72,7 +72,7 @@ namespace ConnectWise.Http
             }
 
             // Build Request
-            HttpRequestMessage httpRequest = buildRequest(request);
+            var httpRequest = buildRequest(request);
 
             // Make Request
             HttpResponseMessage response = null;
@@ -83,11 +83,11 @@ namespace ConnectWise.Http
             }
             catch (OperationCanceledException)
             {
-                return new CWResponse(false, "Request cancelled.");
+                return new CWResponse("Request cancelled.");
             }
             catch (Exception e)
             {
-                return new CWResponse(false, e.ToString());
+                return new CWResponse(e.ToString());
             }
 
             // Check Response
@@ -95,7 +95,7 @@ namespace ConnectWise.Http
             {
                 return new CWResponse(response);
             }
-            return new CWResponse(false, "There was an error making the request to the CW Manage API.");
+            return new CWResponse("There was an error making the request to the CW Manage API.");
         }
 
         private HttpRequestMessage buildRequest(CWRequest request)
@@ -157,11 +157,11 @@ namespace ConnectWise.Http
             }
             catch (OperationCanceledException)
             {
-                return new CWResponse(false, "Request cancelled.");
+                return new CWResponse("Request cancelled.");
             }
             catch (Exception e)
             {
-                return new CWResponse(false, e.ToString());
+                return new CWResponse(e.ToString());
             }
 
             // Check response
@@ -177,11 +177,11 @@ namespace ConnectWise.Http
                     Info = JsonConvert.DeserializeObject<CWCompanyInfo>(response.Content.ReadAsStringAsync().Result, privateSetterSettings);
 
                     // Return Success
-                    return new CWResponse(true, null);
+                    return new CWResponse();
                 }
                 return new CWResponse(response);
             }
-            return new CWResponse(false, "Unable to pull CW Company Information required to form future CWRequests.");
+            return new CWResponse("Unable to pull CW Company Information required to form future CWRequests.");
         }
 
         public void Dispose()

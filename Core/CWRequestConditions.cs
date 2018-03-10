@@ -57,83 +57,48 @@ namespace ConnectWise.Http
         internal string Build(CWConditionOptions options, bool appendToExisting = false)
         {
             var sb = new StringBuilder();
-            bool didFirst = appendToExisting;
+            bool append = appendToExisting;
             // Conditions
-            if (options.Conditions && Conditions != null && Conditions.Any())
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(getConditions());
-            }
+            buildConditionString(options.Conditions, "conditions", Conditions, sb, append, out append);
             // ChildConditions
-            if (options.ChildConditions && ChildConditions != null && ChildConditions.Any())
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(getChildConditions());
-            }
+            buildConditionString(options.ChildConditions, "childConditions", ChildConditions, sb, append, out append);
             // CustomFieldConditions
-            if (options.CustomFieldConditions && CustomFieldConditions != null && CustomFieldConditions.Any())
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(getCustomFieldConditions());
-            }
+            buildConditionString(options.CustomFieldConditions, "customFieldConditions", CustomFieldConditions, sb, append, out append);
             // OrderBy
-            if (options.OrderBy && !string.IsNullOrWhiteSpace(OrderBy))
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append($"orderBy={OrderBy.Trim(' ').Replace(" ", "%20")}");
-            }
+            buildConditionString(options.OrderBy, "orderBy", OrderBy , sb, append, out append);
             // Fields
-            if (options.Fields && Fields != null && Fields.Any())
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(getFields());
-            }
+            buildConditionString(options.Fields, "fields", Fields, sb, append, out append);
             // Columns
-            if (options.Columns && Columns != null && Columns.Any())
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append(getColumns());
-            }
+            buildConditionString(options.Columns, "columns", Columns, sb, append, out append);
             // Page
-            if (options.Page && Page.HasValue)
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append($"page={Page.Value.ToString()}");
-            }
+            buildConditionString(options.Page, "page", Page.HasValue ? Page.Value.ToString() : null, sb, append, out append);
             // PageSize
-            if (options.PageSize && PageSize.HasValue)
-            {
-                if (didFirst) { sb.Append("&"); } else { didFirst = true; sb.Append("?"); }
-                sb.Append($"pageSize={PageSize.Value.ToString()}");
-            }
+            buildConditionString(options.PageSize, "pageSize", PageSize.HasValue ? PageSize.Value.ToString() : null, sb, append, out append);
             // Return
             var final = sb.ToString();
-            return string.IsNullOrWhiteSpace(final) ? string.Empty : final;
+            return string.IsNullOrWhiteSpace(final) ? string.Empty : Uri.EscapeUriString(final);
         }
 
-        private string getConditions()
+        private void buildConditionString(bool option, string name, IEnumerable<string> conditions, StringBuilder sb, bool append, out bool appendNext)
         {
-            return "conditions=" + and(Conditions);
+            appendNext = append;
+            if (option && conditions != null && conditions.Any())
+            {
+                if (append) sb.Append("&");
+                else { appendNext = true; sb.Append("?"); }
+                sb.Append($"{name}={and(conditions)}");
+            }
         }
 
-        private string getChildConditions()
+        private void buildConditionString(bool option, string name, string condition, StringBuilder sb, bool append, out bool appendNext)
         {
-            return "childConditions=" + and(ChildConditions);
-        }
-
-        private string getCustomFieldConditions()
-        {
-            return "customFieldConditions=" + and(CustomFieldConditions);
-        }
-
-        private string getFields()
-        {
-            return "fields=" + and(Fields);
-        }
-
-        private string getColumns()
-        {
-            return "columns=" + and(Columns);
+            appendNext = append;
+            if (option && !string.IsNullOrWhiteSpace(condition))
+            {
+                if (append) sb.Append("&");
+                else { appendNext = true; sb.Append("?"); }
+                sb.Append($"{name}={condition}");
+            }
         }
 
         private string and(IEnumerable<string> enumerable)
@@ -142,8 +107,11 @@ namespace ConnectWise.Http
             string output = string.Empty;
             foreach (var element in enumerable)
             {
-                if (didFirst) { output = output + "%20AND%20"; } else { didFirst = true; }
-                output = output + element.Trim(' ').Replace(" ", "%20");
+                if (!string.IsNullOrWhiteSpace(element))
+                {
+                    if (didFirst) { output = output + " AND "; } else { didFirst = true; }
+                    output = output + element.Trim(' ');
+                }
             }
             return output;
         }

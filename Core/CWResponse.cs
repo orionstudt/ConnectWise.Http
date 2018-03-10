@@ -35,9 +35,13 @@ namespace ConnectWise.Http
         /// </summary>
         public HttpResponseMessage Response { get; private set; }
 
-        internal CWResponse(bool success, string result)
+        internal CWResponse()
         {
-            IsSuccessful = success;
+            IsSuccessful = true;
+        }
+
+        internal CWResponse(string result)
+        {
             Result = result;
         }
 

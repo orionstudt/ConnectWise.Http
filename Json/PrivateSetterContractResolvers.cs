@@ -24,18 +24,6 @@ namespace ConnectWise.Http.Json
         }
     }
 
-    internal class PrivateSetterCamelCasePropertyNamesContractResolver : CamelCasePropertyNamesContractResolver
-    {
-        protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
-        {
-            var prop = base.CreateProperty(member, memberSerialization);
-            if (prop.Writable) { return prop; }
-
-            prop.Writable = member.IsPropertyWithSetter();
-            return prop;
-        }
-    }
-
     internal static class MemberInfoExtensions
     {
         internal static bool IsPropertyWithSetter(this MemberInfo member)
