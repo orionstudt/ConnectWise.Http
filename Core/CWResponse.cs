@@ -62,7 +62,7 @@ namespace ConnectWise.Http
                 }
                 catch (Exception e)
                 {
-                    Error = new CWErrorResult("Error deserializing CWHttpClient error response.", $"Exception: {e.ToString()}");
+                    Error = new CWErrorResult("Error deserializing CWHttpClient error response. View the raw string result of the error in the Result property.", $"Exception: {e.ToString()}");
                 }
             }
         }
