@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -15,29 +16,45 @@ namespace ConnectWise.Http
 
         public StringContent Content { get; set; }
 
-        public CWRequest()
-        {
-            Method = CWHttpMethod.Get;
-        }
-
+        /// <summary>
+        /// Construct a CWRequest with no body content.
+        /// </summary>
         public CWRequest(CWHttpMethod method, string endpoint)
         {
             Method = method;
             Endpoint = endpoint;
         }
 
-        public CWRequest(CWHttpMethod method, string endpoint, string content)
+        /// <summary>
+        /// Construct a CWRequest with serialized string content in the body.
+        /// </summary>
+        /// <param name="serializedContent">The serialized string result of your content to be sent in the body.</param>
+        public CWRequest(CWHttpMethod method, string endpoint, string serializedContent)
         {
             Method = method;
             Endpoint = endpoint;
-            Content = new StringContent(content, Encoding.UTF8, "application/json");
+            Content = new StringContent(serializedContent, Encoding.UTF8, "application/json");
         }
 
-        public CWRequest(CWHttpMethod method, string endpoint, StringContent content)
+        /// <summary>
+        /// Construct a CWRequest with string content in the body.
+        /// </summary>
+        public CWRequest(CWHttpMethod method, string endpoint, StringContent stringContent)
         {
             Method = method;
             Endpoint = endpoint;
-            Content = content;
+            Content = stringContent;
+        }
+
+        /// <summary>
+        /// Construct a CWRequest with serialized string content in the body. This constructor will attempt to serialize the content for you.
+        /// </summary>
+        /// <param name="content">The deserialized object to be serialized and sent in the body.</param>
+        public CWRequest(CWHttpMethod method, string endpoint, object content)
+        {
+            Method = method;
+            Endpoint = endpoint;
+            Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
         }
     }
 }

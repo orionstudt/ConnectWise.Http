@@ -93,13 +93,27 @@ namespace ConnectWise.Http.ModuleTypes
         /// <param name="id">The specified entity ID.</param>
         /// <param name="childId">The specified entity's child ID.</param>
         /// <param name="grandChildId">The specified entity's grandchild ID.</param>
-        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="serializedContent">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest ReplaceRequest(int id, int childId, int grandChildId, string content, CWRequestConditions conditions = null)
+        public virtual CWRequest ReplaceRequest(int id, int childId, int grandChildId, string serializedContent, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Put, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", content);
+            return new CWRequest(CWHttpMethod.Put, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", serializedContent);
+        }
+
+        /// <summary>
+        /// Generic PUT request replacing all fields on the specified entity's grandchild matching the provided GrandChildID with the serialized fields supplied in 'content.'
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <param name="childId">The specified entity's child ID.</param>
+        /// <param name="grandChildId">The specified entity's grandchild ID.</param>
+        /// <param name="content">The object to be serialized & sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest ReplaceRequest(int id, int childId, int grandChildId, object content, CWRequestConditions conditions = null)
+        {
+            return ReplaceRequest(id, childId, grandChildId, JsonConvert.SerializeObject(content), conditions);
         }
 
         /// <summary>
@@ -131,13 +145,26 @@ namespace ConnectWise.Http.ModuleTypes
         /// </summary>
         /// <param name="id">The specified entity ID.</param>
         /// <param name="childId">The specified entity's child ID.</param>
-        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="serializedContent">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest CreateRequest(int id, int childId, string content, CWRequestConditions conditions = null)
+        public virtual CWRequest CreateRequest(int id, int childId, string serializedContent, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}", content);
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}", serializedContent);
+        }
+
+        /// <summary>
+        /// Generic CREATE request for the specified entity's grandchild type.
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <param name="childId">The specified entity's child ID.</param>
+        /// <param name="content">The object to be serialized & sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest CreateRequest(int id, int childId, object content, CWRequestConditions conditions = null)
+        {
+            return CreateRequest(id, childId, JsonConvert.SerializeObject(content), conditions);
         }
     }
 

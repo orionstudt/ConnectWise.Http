@@ -81,13 +81,25 @@ namespace ConnectWise.Http.ModuleTypes
         /// Generic PUT request replacing all fields on the entity matching the provided ID with the serialized fields supplied in 'content.'
         /// </summary>
         /// <param name="id">The specified entity ID.</param>
-        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="serializedContent">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest ReplaceRequest(int id, string content, CWRequestConditions conditions = null)
+        public virtual CWRequest ReplaceRequest(int id, string serializedContent, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Put, $"{getPrefix()}/{id}{conditionStr}", content);
+            return new CWRequest(CWHttpMethod.Put, $"{getPrefix()}/{id}{conditionStr}", serializedContent);
+        }
+
+        /// <summary>
+        /// Generic PUT request replacing all fields on the entity matching the provided ID with the serialized fields supplied in 'content.'
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <param name="content">The object to be serialized & sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest ReplaceRequest(int id, object content, CWRequestConditions conditions = null)
+        {
+            return ReplaceRequest(id, JsonConvert.SerializeObject(content), conditions);
         }
 
         /// <summary>
@@ -115,13 +127,24 @@ namespace ConnectWise.Http.ModuleTypes
         /// <summary>
         /// Generic CREATE request for the specified entity type.
         /// </summary>
-        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="serializedContent">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest CreateRequest(string content, CWRequestConditions conditions = null)
+        public virtual CWRequest CreateRequest(string serializedContent, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", content);
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", serializedContent);
+        }
+
+        /// <summary>
+        /// Generic CREATE request for the specified entity type.
+        /// </summary>
+        /// <param name="content">The object to be serialized & sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest CreateRequest(object content, CWRequestConditions conditions = null)
+        {
+            return CreateRequest(JsonConvert.SerializeObject(content), conditions);
         }
     }
 
@@ -153,13 +176,24 @@ namespace ConnectWise.Http.ModuleTypes
         /// <summary>
         /// Generic CREATE request for the specified entity's type.
         /// </summary>
-        /// <param name="content">The serialized data to be sent in the body of the request.</param>
+        /// <param name="serializedContent">The serialized data to be sent in the body of the request.</param>
         /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest CreateRequest(string content, CWRequestConditions conditions = null)
+        public virtual CWRequest CreateRequest(string serializedContent, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", content);
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", serializedContent);
+        }
+
+        /// <summary>
+        /// Generic CREATE request for the specified entity's type.
+        /// </summary>
+        /// <param name="content">The object to be serialized & sent in the body of the request.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest CreateRequest(object content, CWRequestConditions conditions = null)
+        {
+            return CreateRequest(JsonConvert.SerializeObject(content), conditions);
         }
 
         /// <summary>
