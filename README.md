@@ -59,6 +59,17 @@ var request = ServiceModule.Tickets.UpdateRequest(ticketId, operations);
 var response = await client.SendAsync(request);
 ```
 
+### Deserialization
+ConnectWise.Http can also attempt to deserialize the response into your provided type.
+```C#
+// Where "TConnectWiseTicket" is your custom type.
+int ticketId = 121;
+TConnectWiseTicket ticket = null;
+var request = ServiceModule.Tickets.GetRequest(ticketId);
+var response = await client.SendAsync<TConnectWiseTicket>(request);
+if (response.IsSuccessful && response.IsDeserialized) ticket = response.Data;
+```
+
 ### Modules
 Below are the modules currently implemented. You can use the CWRequest object to specify specific endpoints not yet supported here - These serve only to simplify the creation of the request URI.
 
