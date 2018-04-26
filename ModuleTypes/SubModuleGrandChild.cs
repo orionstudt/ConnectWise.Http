@@ -137,7 +137,7 @@ namespace ConnectWise.Http.ModuleTypes
         public virtual CWRequest CreateRequest(int id, int childId, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}");
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}", content);
         }
     }
 

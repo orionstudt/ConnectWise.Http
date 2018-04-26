@@ -137,7 +137,7 @@ namespace ConnectWise.Http.ModuleTypes
         public virtual CWRequest CreateRequest(int id, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id)}{conditionStr}");
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id)}{conditionStr}", content);
         }
     }
 
@@ -177,7 +177,7 @@ namespace ConnectWise.Http.ModuleTypes
         public virtual CWRequest CreateRequest(int id, string content, CWRequestConditions conditions = null)
         {
             string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
-            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id)}{conditionStr}");
+            return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id)}{conditionStr}", content);
         }
 
         /// <summary>

@@ -58,6 +58,12 @@ namespace ConnectWise.Http
             auth = settings.Authentication.BuildHeader(companyName);
         }
 
+        /// <summary>
+        /// Method used to send a request to the configured Manage API.
+        /// </summary>
+        /// <param name="request">CWRequest object. Can be pre-build with various included modules or can be constructed manually.</param>
+        /// <param name="cts">Cancellation Token if you would like to be able to cancel mid-request.</param>
+        /// <returns>A generic CWResponse object with no deserialization.</returns>
         public async Task<CWResponse> SendAsync(CWRequest request, CancellationTokenSource cts = null)
         {
             // Check if we have Company Info
@@ -96,6 +102,53 @@ namespace ConnectWise.Http
                 return new CWResponse(response);
             }
             return new CWResponse("There was an error making the request to the CW Manage API.");
+        }
+
+        /// <summary>
+        /// Method used to send a request to the configured Manage API.
+        /// </summary>
+        /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
+        /// <param name="request">CWRequest object. Can be pre-build with various included modules or can be constructed manually.</param>
+        /// <param name="cts">Cancellation Token if you would like to be able to cancel mid-request.</param>
+        /// <returns>A CWResponse object that will attempt deserialization to the specified type.</returns>
+        public async Task<CWResponse<T>> SendAsync<T>(CWRequest request, CancellationTokenSource cts = null) where T : class
+        {
+            // Check if we have Company Info
+            if (Info == null)
+            {
+                // Need Company Info
+                var infoResponse = await getCompanyInfoAsync(cts);
+                if (!infoResponse.IsSuccessful)
+                {
+                    return new CWResponse<T>(infoResponse.Response, false);
+                }
+            }
+
+            // Build Request
+            var httpRequest = buildRequest(request);
+
+            // Make Request
+            HttpResponseMessage response = null;
+            try
+            {
+                if (cts != null) { response = await client.SendAsync(httpRequest, cts.Token); }
+                else { response = await client.SendAsync(httpRequest); }
+            }
+            catch (OperationCanceledException)
+            {
+                return new CWResponse<T>("Request cancelled.");
+            }
+            catch (Exception e)
+            {
+                return new CWResponse<T>(e.ToString());
+            }
+
+            // Check Response
+            if (response != null)
+            {
+                return new CWResponse<T>(response);
+            }
+            return new CWResponse<T>("There was an error making the request to the CW Manage API.");
         }
 
         private HttpRequestMessage buildRequest(CWRequest request)
