@@ -95,9 +95,10 @@ namespace ConnectWise.Http
                     Data = JsonConvert.DeserializeObject<T>(Result);
                     IsDerialized = true;
                 }
-                catch
+                catch (Exception)
                 {
                     IsDerialized = false;
+                    throw;
                 }
             }
         }
