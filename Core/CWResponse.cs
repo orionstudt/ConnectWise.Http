@@ -77,7 +77,7 @@ namespace ConnectWise.Http
         /// <summary>
         /// Indicates whether the result was deserialized successfully.
         /// </summary>
-        public bool IsDerialized { get; private set; }
+        public bool IsDeserialized { get; private set; }
 
         /// <summary>
         /// The deserialized result data.
@@ -93,11 +93,11 @@ namespace ConnectWise.Http
                 try
                 {
                     Data = JsonConvert.DeserializeObject<T>(Result);
-                    IsDerialized = true;
+                    IsDeserialized = true;
                 }
                 catch (Exception)
                 {
-                    IsDerialized = false;
+                    IsDeserialized = false;
                     throw;
                 }
             }
