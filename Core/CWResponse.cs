@@ -84,7 +84,12 @@ namespace ConnectWise.Http
         }
 
         /// <summary>
-        /// Attempts to deserialize the JSON result into the specified type.
+        /// If TryDeserialize<T> is attempted and fails the resulting exception will be accessible here.
+        /// </summary>
+        public Exception DeserializationException { get; private set; }
+
+        /// <summary>
+        /// Attempts to deserialize the JSON result into the specified type. Will populate DeserializationException if it fails.
         /// </summary>
         /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
         /// <param name="output">An instance of the deserialization type.</param>
@@ -96,9 +101,10 @@ namespace ConnectWise.Http
                 output = JsonConvert.DeserializeObject<T>(Result);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 output = default(T);
+                DeserializationException = ex;
                 return false;
             }
         }
