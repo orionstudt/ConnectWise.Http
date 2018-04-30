@@ -2,7 +2,6 @@ bin/
 obj/
 .vs/
 *.nupkg
-*.nuspec
 *.csproj.user
 
 # Ignore NuGet Packages
