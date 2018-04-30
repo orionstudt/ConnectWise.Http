@@ -19,7 +19,7 @@ namespace ConnectWise.Http.Modules.Time.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest DefaultsRequest(string content, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/defaults{conditionStr}", content);
         }
     }

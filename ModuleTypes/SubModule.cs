@@ -42,7 +42,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest GetRequest(CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.StandardConditions) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.StandardConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}{conditionStr}");
         }
 
@@ -54,7 +54,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest GetRequest(int id, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{id}{conditionStr}");
         }
 
@@ -65,7 +65,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest CountRequest(CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/count{conditionStr}");
         }
     }
@@ -86,7 +86,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest ReplaceRequest(int id, string serializedContent, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Put, $"{getPrefix()}/{id}{conditionStr}", serializedContent);
         }
 
@@ -111,7 +111,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest UpdateRequest(int id, IEnumerable<CWPatch> updates, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.OnlyFields) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             var patches = updates.Any() ? updates.ToList() : new List<CWPatch>();
             return new CWRequest(CWHttpMethod.Patch, $"{getPrefix()}/{id}{conditionStr}", JsonConvert.SerializeObject(patches));
         }
@@ -132,7 +132,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest CreateRequest(string serializedContent, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", serializedContent);
         }
 
@@ -181,7 +181,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest CreateRequest(string serializedContent, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.Build(CWConditionOptions.CountConditions) : string.Empty;
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}{conditionStr}", serializedContent);
         }
 

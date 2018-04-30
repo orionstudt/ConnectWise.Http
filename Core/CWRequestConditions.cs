@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -54,7 +55,16 @@ namespace ConnectWise.Http
 
         public int? PageSize { get; set; }
 
-        internal string Build(CWConditionOptions options, bool appendToExisting = false)
+        public CWRequestConditions()
+        {
+            Conditions = new string[] { };
+            ChildConditions = new string[] { };
+            CustomFieldConditions = new string[] { };
+            Fields = new string[] { };
+            Columns = new string[] { };
+        }
+
+        internal string ToUriConditions(CWConditionOptions options, bool appendToExisting = false)
         {
             var sb = new StringBuilder();
             bool append = appendToExisting;
@@ -77,6 +87,29 @@ namespace ConnectWise.Http
             // Return
             var final = sb.ToString();
             return string.IsNullOrWhiteSpace(final) ? string.Empty : Uri.EscapeUriString(final);
+        }
+
+        internal string ToBodyConditions()
+        {
+            var body = new CWConditionBody
+            {
+                Conditions = Conditions != null && Conditions.Any() ? and(Conditions) : null,
+                ChildConditions = ChildConditions != null && ChildConditions.Any() ? and(ChildConditions) : null,
+                CustomFieldConditions = CustomFieldConditions != null && CustomFieldConditions.Any() ? and(CustomFieldConditions) : null,
+                OrderBy = !string.IsNullOrWhiteSpace(OrderBy) ? OrderBy : null
+            };
+            return JsonConvert.SerializeObject(body);
+        }
+
+        internal class CWConditionBody
+        {
+            public string Conditions { get; set; }
+
+            public string ChildConditions { get; set; }
+
+            public string CustomFieldConditions { get; set; }
+
+            public string OrderBy { get; set; }
         }
 
         private void buildConditionString(bool option, string name, IEnumerable<string> conditions, StringBuilder sb, bool append, out bool appendNext)
