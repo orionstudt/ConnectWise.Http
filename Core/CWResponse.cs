@@ -76,8 +76,8 @@ namespace ConnectWise.Http
         /// <summary>
         /// Deserialize the JSON result into the specified type.
         /// </summary>
-        /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
-        /// <returns>An instance of the deserialization type.</returns>
+        /// <typeparam name="T">The target deserialization type. Must be a class.</typeparam>
+        /// <returns>An instance of the target deserialization type.</returns>
         public T Deserialize<T>()
         {
             return JsonConvert.DeserializeObject<T>(Result);
@@ -91,8 +91,8 @@ namespace ConnectWise.Http
         /// <summary>
         /// Attempts to deserialize the JSON result into the specified type. Will populate DeserializationException if it fails.
         /// </summary>
-        /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
-        /// <param name="output">An instance of the deserialization type.</param>
+        /// <typeparam name="T">The target deserialization type. Must be a class.</typeparam>
+        /// <param name="output">An instance of the target deserialization type.</param>
         /// <returns>True if deserialization was successful.</returns>
         public bool TryDeserialize<T>(out T output)
         {
@@ -119,7 +119,7 @@ namespace ConnectWise.Http
     /// <summary>
     /// ConnectWise Manage generic API result object. This object will attempt to deserialize the result for you.
     /// </summary>
-    /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
+    /// <typeparam name="T">The target deserialization type. Must be a class.</typeparam>
     public class CWResponse<T> : CWResponseBase where T : class
     {
         /// <summary>
