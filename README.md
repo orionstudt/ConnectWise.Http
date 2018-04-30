@@ -75,8 +75,8 @@ Below are the modules currently implemented. You can use the CWRequest object to
 
 |   Modules  | Supported |
 |------------|:---------:|
-|Company     |*Partial*  |
-|Expense     |No         |
+|Company     |**Yes**    |
+|Expense     |**Yes**    |
 |Finance     |No         |
 |Marketing   |No         |
 |Procurement |No         |

@@ -66,6 +66,25 @@ namespace ConnectWise.Http
                 }
             }
         }
+
+        public T Deserialize<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(Result);
+        }
+
+        public bool TryDeserialize<T>(out T output)
+        {
+            try
+            {
+                output = JsonConvert.DeserializeObject<T>(Result);
+                return true;
+            }
+            catch (Exception)
+            {
+                output = default(T);
+                return false;
+            }
+        }
     }
 
     /// <summary>

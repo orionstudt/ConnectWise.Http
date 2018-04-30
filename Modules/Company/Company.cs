@@ -76,13 +76,13 @@ namespace ConnectWise.Http.Modules.Company
 
         public static FullSubModule ManagementEmails = new FullSubModule(module, "managementEmails");
 
-        // ManagementExecuteManagedItSyncs
+        public static ManagementExecuteManagedItSyncsSubModule ManagementExecuteManagedItSyncs = new ManagementExecuteManagedItSyncsSubModule(module, "management");
 
         public static FullSubModuleChild ManagementItSolutionAgreementInterfaceParameters = new FullSubModuleChild(module, "managementItSolutions", "managementProducts");
 
         public static FullSubModule ManagementItSolutions = new FullSubModule(module, "managementItSolutions");
 
-        // ManagementLogs
+        public static ManagementLogsSubModule ManagementLogs = new ManagementLogsSubModule(module, "management");
 
         public static FullSubModuleChild ManagementReportNotifications = new FullSubModuleChild(module, "management", "managementReportNotifications");
 

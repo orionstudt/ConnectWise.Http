@@ -57,6 +57,10 @@
     <Compile Include="Modules\Company\SubModules\Companies.cs" />
     <Compile Include="Modules\Company\SubModules\CompanyPickerItems.cs" />
     <Compile Include="Modules\Company\SubModules\Contacts.cs" />
+    <Compile Include="Modules\Company\SubModules\ManagementExecuteManagedItSyncs.cs" />
+    <Compile Include="Modules\Company\SubModules\ManagementLogs.cs" />
+    <Compile Include="Modules\Expense\Expense.cs" />
+    <Compile Include="Modules\Expense\SubModules\ExpenseReports.cs" />
     <Compile Include="Modules\Project\SubModules\ProjectContacts.cs" />
     <Compile Include="Modules\Schedule\Schedule.cs" />
     <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />
