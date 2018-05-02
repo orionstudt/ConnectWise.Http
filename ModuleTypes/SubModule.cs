@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 namespace ConnectWise.Http.ModuleTypes
 {
     /// <summary>
-    /// Sub-Module endpoint class.
-    /// Sub-Module in this context means the endpoint path is /[module]/[subModule]/{id?}
+    /// Sub-Module endpoint class. Sub-Module in this context means the endpoint path is /[module]/[subModule]/{id?}
     /// </summary>
-    public class SubModule
+    public abstract class SubModule
     {
         private string module;
         private string endpoint;
