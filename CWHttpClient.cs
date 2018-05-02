@@ -30,8 +30,7 @@ namespace ConnectWise.Http
         private HttpClient client;
 
         /// <summary>
-        /// HttpClient used to make requests to a ConnectWise Manage API.
-        /// This constructor will create its own System.Net.Http.HttpClient internally.
+        /// HttpClient used to make requests to a ConnectWise Manage API. This constructor will create its own System.Net.Http.HttpClient internally.
         /// </summary>
         public CWHttpClient(CWApiSettings settings)
         {
@@ -43,10 +42,7 @@ namespace ConnectWise.Http
         }
 
         /// <summary>
-        /// HttpClient used to make requests to a ConnectWise Manage API.
-        /// This constructor will take a pre-instantiated System.Net.Http.HttpClient.
-        /// Use this if you will be using the provided HttpClient to make requests to other APIs as well, or if you want to set different HttpClient settings.
-        /// CWHttpClient will not make any changes to your provided HttpClient's default settings.
+        /// HttpClient used to make requests to a ConnectWise Manage API. This constructor will take a pre-instantiated System.Net.Http.HttpClient. Use this if you will be using the provided HttpClient to make requests to other APIs as well, or if you want to set different HttpClient settings. CWHttpClient will not make any changes to your provided HttpClient's default settings.
         /// </summary>
         public CWHttpClient(CWApiSettings settings, HttpClient client)
         {
