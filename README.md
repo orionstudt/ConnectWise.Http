@@ -79,10 +79,12 @@ Once you have your response, the `CWResponse` object can attempt to deserialize 
 int ticketId = 121;
 var request = ServiceModule.Tickets.GetRequest(ticketId);
 var response = await client.SendAsync(request);
-// Deserialize
+
+// Using Deserialize
 // An exception will be thrown if deserialization fails
 var ticketOne = response.Deserialize<TConnectWiseTicket>();
-// TryDeserialize
+
+// Using TryDeserialize
 if (response.TryDeserialize<TConnectWiseTicket>(out TConnectWiseTicket ticketTwo) {
   // Do something with ticketTwo
 } else {
