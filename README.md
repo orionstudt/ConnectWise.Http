@@ -28,6 +28,8 @@ There is also an overloaded constructor that allows you to provide an existing i
 
 So, provide an `HttpClient` instance to `CWHttpClient`, which exclusively uses the `HttpClient.SendAsync(HttpRequestMessage message)` method so that you don't need to worry about `CWHttpClient` making any changes to the default settings of the `HttpClient` that you provided.
 
+---
+
 ### GET Request
 ```C#
 using ConnectWise.Http.Modules.Service;
@@ -38,6 +40,8 @@ var request = ServiceModule.Tickets.GetRequest(ticketId);
 var response = await client.SendAsync(request);
 ```
 
+---
+
 ### POST/PUT Request
 You serialize the body content before building the request.
 ```C#
@@ -46,6 +50,8 @@ string serializedContent = JsonConvert.SerializeObject(...);
 var request = ServiceModule.Tickets.CreateRequest(serializedContent);
 var response = await client.SendAsync(request);
 ```
+
+---
 
 ### PATCH Request
 ConnectWise.Http provides a ConnectWise Patch Operation object as per their REST developer documentation.
@@ -64,6 +70,8 @@ var request = ServiceModule.Tickets.UpdateRequest(ticketId, operations);
 var response = await client.SendAsync(request);
 ```
 
+---
+
 ### Deserialization
 ConnectWise.Http can also attempt to deserialize the response into your provided type.
 ```C#
@@ -74,6 +82,8 @@ var request = ServiceModule.Tickets.GetRequest(ticketId);
 var response = await client.SendAsync<TConnectWiseTicket>(request);
 if (response.IsSuccessful && response.IsDeserialized) ticket = response.Data;
 ```
+
+---
 
 ### Modules
 Below are the modules currently implemented. You can use the CWRequest object to specify specific endpoints not yet supported here - These serve only to simplify the creation of the request URI.
