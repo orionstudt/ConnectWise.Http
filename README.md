@@ -1,5 +1,5 @@
 # ConnectWise.Http
-A .Net HttpClient wrapper for interacting with the ConnectWise Manage REST API.
+A .NET HttpClient wrapper for interacting with the ConnectWise Manage REST API.
 
 # Installation
 ```
