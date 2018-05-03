@@ -73,14 +73,22 @@ var response = await client.SendAsync(request);
 ---
 
 ### Deserialization
-ConnectWise.Http can also attempt to deserialize the response into your provided type.
+Once you have your response, the `CWResponse` object can attempt to deserialize to your specified class type.
 ```C#
 // Where "TConnectWiseTicket" is your custom type.
 int ticketId = 121;
-TConnectWiseTicket ticket = null;
 var request = ServiceModule.Tickets.GetRequest(ticketId);
-var response = await client.SendAsync<TConnectWiseTicket>(request);
-if (response.IsSuccessful && response.IsDeserialized) ticket = response.Data;
+var response = await client.SendAsync(request);
+// Deserialize
+// An exception will be thrown if deserialization fails
+var ticketOne = response.Deserialize<TConnectWiseTicket>();
+// TryDeserialize
+if (response.TryDeserialize<TConnectWiseTicket>(out TConnectWiseTicket ticketTwo) {
+  // Do something with ticketTwo
+} else {
+  var exception = response.DeserializationException;
+  // Error Logging
+}
 ```
 
 ---
