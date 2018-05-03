@@ -23,6 +23,10 @@ var settings = new CWApiSettings(
 var client = new CWHttpClient(settings);
 ```
 
+There is also an overloaded constructor that allows you to provide an existing instance of an `HttpClient`, so that `CWHttpClient` does not create its own `HttpClient` instance. It is generally good practice to only construct & use a single `HttpClient` instance throughout the lifetime of your application (with some exceptions relating to when DNS changes are made during the lifetime of your application) - this is because each `HttpClient` constructed will claim a web socket.
+
+So, provide an `HttpClient` instance to `CWHttpClient`, which exclusively uses the `HttpClient.SendAsync(HttpRequestMessage message)` method so that you don't need to worry about `CWHttpClient` making any changes to the default settings of the `HttpClient` that you provided.
+
 ### GET Request
 ```C#
 using ConnectWise.Http.Modules.Service;
