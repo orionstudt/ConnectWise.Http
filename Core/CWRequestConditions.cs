@@ -7,47 +7,35 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http
 {
+    /// <summary>
+    /// An instance of this 
+    /// </summary>
     public class CWRequestConditions
     {
         /// <summary>
-        /// Each element in the enumerable should be a distinct condition.
-        /// I.E. -> board/name="Integration"
-        /// All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis.
-        /// I.E. -> (board/name="Integration" OR board/id in (3,2,4))
+        /// Each element in the enumerable should be a distinct condition. I.E. -> board/name="Integration". All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis. I.E. -> (board/name="Integration" OR board/id in (3,2,4))
         /// </summary>
         public IEnumerable<string> Conditions { get; set; }
 
         /// <summary>
-        /// Each element in the enumerable should be a distinct condition.
-        /// I.E. -> board/name="Integration"
-        /// All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis.
-        /// I.E. -> (board/name="Integration" OR board/id in (3,2,4))
+        /// Each element in the enumerable should be a distinct condition. I.E. -> board/name="Integration". All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis. I.E. -> (board/name="Integration" OR board/id in (3,2,4))
         /// </summary>
         public IEnumerable<string> ChildConditions { get; set; }
 
         /// <summary>
-        /// Each element in the enumerable should be a distinct condition.
-        /// I.E. -> board/name="Integration"
-        /// All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis.
-        /// I.E. -> (board/name="Integration" OR board/id in (3,2,4))
+        /// Each element in the enumerable should be a distinct condition. I.E. -> board/name="Integration". All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis. I.E. -> (board/name="Integration" OR board/id in (3,2,4))
         /// </summary>
         public IEnumerable<string> CustomFieldConditions { get; set; }
 
         public string OrderBy { get; set; }
 
         /// <summary>
-        /// Each element in the enumerable should be a distinct condition.
-        /// I.E. -> board/name="Integration"
-        /// All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis.
-        /// I.E. -> (board/name="Integration" OR board/id in (3,2,4))
+        /// Each element in the enumerable should be a distinct condition. I.E. -> board/name="Integration". All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis. I.E. -> (board/name="Integration" OR board/id in (3,2,4))
         /// </summary>
         public IEnumerable<string> Fields { get; set; }
 
         /// <summary>
-        /// Each element in the enumerable should be a distinct condition.
-        /// I.E. -> board/name="Integration"
-        /// All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis.
-        /// I.E. -> (board/name="Integration" OR board/id in (3,2,4))
+        /// Each element in the enumerable should be a distinct condition. I.E. -> board/name="Integration". All elements will be AND'ed. If you would like to OR conditions, make them a single element enclosed in parenthesis. I.E. -> (board/name="Integration" OR board/id in (3,2,4))
         /// </summary>
         public IEnumerable<string> Columns { get; set; }
 

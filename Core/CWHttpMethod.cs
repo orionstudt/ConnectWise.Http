@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http
 {
+    /// <summary>
+    /// The HTTP Method of a CWRequest. CW needs a custom enumerator for their PATCH Method.
+    /// </summary>
     public enum CWHttpMethod
     {
         Get,

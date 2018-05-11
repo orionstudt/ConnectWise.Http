@@ -8,12 +8,24 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http
 {
+    /// <summary>
+    /// Send an instance of CWRequest with CWHttpClient to query the configured CW Manage API.
+    /// </summary>
     public class CWRequest
     {
+        /// <summary>
+        /// The HTTP Method of the request. CW needs a custom enumerator for their PATCH Method.
+        /// </summary>
         public CWHttpMethod Method { get; set; }
 
+        /// <summary>
+        /// The API endpoint substring, including trailing query conditions but excluding a leading forward slash. For "https://cw.siteurl.com/v4_6_release/apis/service/tickets?conditions=status/name%20like%20'%open%'" this would be "service/tickets?conditions=status/name%20like%20'%open%'"
+        /// </summary>
         public string Endpoint { get; set; }
 
+        /// <summary>
+        /// The content that will be sent in the body of request. This is not always required.
+        /// </summary>
         public StringContent Content { get; set; }
 
         /// <summary>
@@ -55,6 +67,17 @@ namespace ConnectWise.Http
             Method = method;
             Endpoint = endpoint;
             Content = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
+        }
+
+        /// <summary>
+        /// Construct a CWRequest object for a PATCH operation on the specified endpoint.
+        /// </summary>
+        /// <param name="patchOperations">The enumerable of patch operations to be executed on the specified endpoint.</param>
+        public CWRequest(string endpoint, IEnumerable<CWPatch> patchOperations)
+        {
+            Method = CWHttpMethod.Patch;
+            Endpoint = endpoint;
+            Content = new StringContent(JsonConvert.SerializeObject(patchOperations.ToList()), Encoding.UTF8, "application/json");
         }
     }
 }

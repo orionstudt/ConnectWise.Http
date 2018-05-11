@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ConnectWise.Http")]
-[assembly: AssemblyDescription("A .Net HttpClient wrapper for interacting with the ConnectWise Manage REST API.")]
+[assembly: AssemblyDescription("A .NET HttpClient wrapper for interacting with the ConnectWise Manage REST API.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Joshua Studt")]
 [assembly: AssemblyProduct("ConnectWise.Http")]
