@@ -64,26 +64,34 @@ namespace ConnectWise.Http
             Columns = new string[] { };
         }
 
+        private enum Delimiter
+        {
+            And,
+            Comma
+        }
+
+        private StringBuilder sb = null;
+
         internal string ToUriConditions(CWConditionOptions options, bool appendToExisting = false)
         {
             var sb = new StringBuilder();
             bool append = appendToExisting;
             // Conditions
-            buildConditionString(options.Conditions, "conditions", Conditions, sb, append, out append);
+            buildConditionString(options.Conditions, "conditions", Conditions, Delimiter.And, append, out append);
             // ChildConditions
-            buildConditionString(options.ChildConditions, "childConditions", ChildConditions, sb, append, out append);
+            buildConditionString(options.ChildConditions, "childConditions", ChildConditions, Delimiter.And, append, out append);
             // CustomFieldConditions
-            buildConditionString(options.CustomFieldConditions, "customFieldConditions", CustomFieldConditions, sb, append, out append);
+            buildConditionString(options.CustomFieldConditions, "customFieldConditions", CustomFieldConditions, Delimiter.And, append, out append);
             // OrderBy
-            buildConditionString(options.OrderBy, "orderBy", OrderBy , sb, append, out append);
+            buildConditionString(options.OrderBy, "orderBy", OrderBy , append, out append);
             // Fields
-            buildConditionString(options.Fields, "fields", Fields, sb, append, out append);
+            buildConditionString(options.Fields, "fields", Fields, Delimiter.Comma, append, out append);
             // Columns
-            buildConditionString(options.Columns, "columns", Columns, sb, append, out append);
+            buildConditionString(options.Columns, "columns", Columns, Delimiter.Comma, append, out append);
             // Page
-            buildConditionString(options.Page, "page", Page.HasValue ? Page.Value.ToString() : null, sb, append, out append);
+            buildConditionString(options.Page, "page", Page.HasValue ? Page.Value.ToString() : null, append, out append);
             // PageSize
-            buildConditionString(options.PageSize, "pageSize", PageSize.HasValue ? PageSize.Value.ToString() : null, sb, append, out append);
+            buildConditionString(options.PageSize, "pageSize", PageSize.HasValue ? PageSize.Value.ToString() : null, append, out append);
             // Return
             var final = sb.ToString();
             return string.IsNullOrWhiteSpace(final) ? string.Empty : Uri.EscapeUriString(final);
@@ -112,18 +120,19 @@ namespace ConnectWise.Http
             public string OrderBy { get; set; }
         }
 
-        private void buildConditionString(bool option, string name, IEnumerable<string> conditions, StringBuilder sb, bool append, out bool appendNext)
+        private void buildConditionString(bool option, string name, IEnumerable<string> conditions, Delimiter delim, bool append, out bool appendNext)
         {
             appendNext = append;
             if (option && conditions != null && conditions.Any())
             {
                 if (append) sb.Append("&");
                 else { appendNext = true; sb.Append("?"); }
-                sb.Append($"{name}={and(conditions)}");
+                if (delim == Delimiter.Comma) sb.Append($"{name}={string.Join(",", conditions)}");
+                else sb.Append($"{name}={and(conditions)}");
             }
         }
 
-        private void buildConditionString(bool option, string name, string condition, StringBuilder sb, bool append, out bool appendNext)
+        private void buildConditionString(bool option, string name, string condition, bool append, out bool appendNext)
         {
             appendNext = append;
             if (option && !string.IsNullOrWhiteSpace(condition))
