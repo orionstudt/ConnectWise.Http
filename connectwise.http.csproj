@@ -61,6 +61,7 @@
     <Compile Include="Modules\Company\SubModules\ManagementLogs.cs" />
     <Compile Include="Modules\Expense\Expense.cs" />
     <Compile Include="Modules\Expense\SubModules\ExpenseReports.cs" />
+    <Compile Include="Modules\Finance\Finance.cs" />
     <Compile Include="Modules\Project\SubModules\ProjectContacts.cs" />
     <Compile Include="Modules\Schedule\Schedule.cs" />
     <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />

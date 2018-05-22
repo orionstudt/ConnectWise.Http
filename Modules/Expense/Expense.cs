@@ -12,13 +12,13 @@ namespace ConnectWise.Http.Modules.Expense
     {
         private static string module = "expense";
 
-        public static BaseSubModule Classifications = new BaseSubModule(module, "classifications");
+        public static GetSubModule Classifications = new GetSubModule(module, "classifications");
 
         public static FullSubModule ExpenseEntries = new FullSubModule(module, "entries");
 
         public static ExpenseReportsSubModule ExpenseReports = new ExpenseReportsSubModule(module, "reports");
 
-        public static BaseSubModule ExpenseTypeExternalIntegrationReferences = new BaseSubModule(module, "expenseTypeExternalIntegrationReferences");
+        public static GetSubModule ExpenseTypeExternalIntegrationReferences = new GetSubModule(module, "expenseTypeExternalIntegrationReferences");
 
         public static FullSubModule ExpenseTypes = new FullSubModule(module, "types");
 

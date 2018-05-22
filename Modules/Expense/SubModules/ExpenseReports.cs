@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Expense.SubModules
 {
-    public class ExpenseReportsSubModule : BaseSubModule
+    public class ExpenseReportsSubModule : GetSubModule
     {
         internal ExpenseReportsSubModule(string module, string endpoint) : base(module, endpoint) { }
 

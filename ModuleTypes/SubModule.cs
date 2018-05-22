@@ -28,7 +28,7 @@ namespace ConnectWise.Http.ModuleTypes
     }
 
     /// <summary>
-    /// Sub-Module endpoint class that contains GET, GETBYID, & COUNT.
+    /// Sub-Module endpoint class that contains GET & COUNT.
     /// </summary>
     public class BaseSubModule : SubModule
     {
@@ -46,18 +46,6 @@ namespace ConnectWise.Http.ModuleTypes
         }
 
         /// <summary>
-        /// Generic GET request for the specified entity matching the provided ID.
-        /// </summary>
-        /// <param name="id">The specified entity ID.</param>
-        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
-        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest GetRequest(int id, CWRequestConditions conditions = null)
-        {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{id}{conditionStr}");
-        }
-
-        /// <summary>
         /// Generic GET request across the specified entities using the conditions provided.
         /// </summary>
         /// <param name="conditions">This endpoint only accepts 'Conditions' and 'CustomFieldConditions.'</param>
@@ -70,9 +58,29 @@ namespace ConnectWise.Http.ModuleTypes
     }
 
     /// <summary>
+    /// Sub-Module endpoint class that contains GET, GETBYID, & COUNT.
+    /// </summary>
+    public class GetSubModule : BaseSubModule
+    {
+        internal GetSubModule(string module, string endpoint) : base(module, endpoint) { }
+
+        /// <summary>
+        /// Generic GET request for the specified entity matching the provided ID.
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest GetRequest(int id, CWRequestConditions conditions = null)
+        {
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{id}{conditionStr}");
+        }       
+    }
+
+    /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, & UPDATE.
     /// </summary>
-    public class UpdateSubModule : BaseSubModule
+    public class UpdateSubModule : GetSubModule
     {
         internal UpdateSubModule(string module, string endpoint) : base(module, endpoint) { }
 
@@ -168,7 +176,7 @@ namespace ConnectWise.Http.ModuleTypes
     /// <summary>
     /// Sub-Module endpoint class that contains GET, GETBYID, COUNT, CREATE & DELETE.
     /// </summary>
-    public class PartialSubModule : BaseSubModule
+    public class PartialSubModule : GetSubModule
     {
         internal PartialSubModule(string module, string endpoint) : base(module, endpoint) { }
 
