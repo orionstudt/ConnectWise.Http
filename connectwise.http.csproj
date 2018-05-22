@@ -62,11 +62,17 @@
     <Compile Include="Modules\Expense\Expense.cs" />
     <Compile Include="Modules\Expense\SubModules\ExpenseReports.cs" />
     <Compile Include="Modules\Finance\Finance.cs" />
+    <Compile Include="Modules\Finance\SubModules\AccountingBatches.cs" />
+    <Compile Include="Modules\Finance\SubModules\ClosedInvoices.cs" />
+    <Compile Include="Modules\Finance\SubModules\InvoicePayments.cs" />
+    <Compile Include="Modules\Finance\SubModules\Invoices.cs" />
     <Compile Include="Modules\Project\SubModules\ProjectContacts.cs" />
     <Compile Include="Modules\Schedule\Schedule.cs" />
     <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />
     <Compile Include="Modules\Service\SubModules\Boards.cs" />
     <Compile Include="Modules\Service\SubModules\Priorities.cs" />
+    <Compile Include="Modules\System\SubModules\Members.cs" />
+    <Compile Include="Modules\System\System.cs" />
     <Compile Include="Modules\Time\SubModules\TimeEntries.cs" />
     <Compile Include="Modules\Time\SubModules\TimePeriodSetups.cs" />
     <Compile Include="Modules\Time\SubModules\TimeSheets.cs" />

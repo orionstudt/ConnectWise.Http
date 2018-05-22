@@ -30,7 +30,7 @@ namespace ConnectWise.Http.Modules.Service
 
         public static FullSubModuleChild BoardTeams = new FullSubModuleChild(module, "boards", "teams");
 
-        public static BaseSubModuleChild BoardTypeSubTypeItemAssociations = new BaseSubModuleChild(module, "boards", "typeSubTimeItemAssociations");
+        public static GetSubModuleChild BoardTypeSubTypeItemAssociations = new GetSubModuleChild(module, "boards", "typeSubTimeItemAssociations");
 
         public static FullSubModuleChild BoardTypes = new FullSubModuleChild(module, "boards", "types");
 
@@ -58,15 +58,15 @@ namespace ConnectWise.Http.Modules.Service
 
         public static FullSubModule ServiceSurveys = new FullSubModule(module, "surveys");
 
-        public static BaseSubModule ServiceTeams = new BaseSubModule(module, "teams");
+        public static GetSubModule ServiceTeams = new GetSubModule(module, "teams");
 
-        public static BaseSubModule ServiceTemplates = new BaseSubModule(module, "templates");
+        public static GetSubModule ServiceTemplates = new GetSubModule(module, "templates");
 
         public static UpdateSubModule Severities = new UpdateSubModule(module, "severities");
 
         public static FullSubModule Sources = new FullSubModule(module, "sources");
 
-        public static BaseSubModule StatusExternalIntegrationReferences = new BaseSubModule(module, "statusExternalIntegrationReferences");
+        public static GetSubModule StatusExternalIntegrationReferences = new GetSubModule(module, "statusExternalIntegrationReferences");
 
         public static FullSubModuleGrandChild SurveyOptions = new FullSubModuleGrandChild(module, "surveys", "questions", "options");
 

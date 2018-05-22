@@ -30,7 +30,7 @@ namespace ConnectWise.Http.Modules.Time
 
         public static TimePeriodSetupsSubModule TimePeriodSetups = new TimePeriodSetupsSubModule(module, "timePeriodSetups");
 
-        public static BaseSubModuleChild TimePeriods = new BaseSubModuleChild(module, "timePeriodSetups", "periods");
+        public static GetSubModuleChild TimePeriods = new GetSubModuleChild(module, "timePeriodSetups", "periods");
 
         public static TimeSheetsSubModule TimeSheets = new TimeSheetsSubModule(module, "sheets");
 
@@ -38,7 +38,7 @@ namespace ConnectWise.Http.Modules.Time
 
         public static FullSubModule WorkRoles = new FullSubModule(module, "workRoles");
 
-        public static BaseSubModule WorkTypeExternalIntegrationReferences = new BaseSubModule(module, "workTypeExternalIntegrationReferences");
+        public static GetSubModule WorkTypeExternalIntegrationReferences = new GetSubModule(module, "workTypeExternalIntegrationReferences");
 
         public static FullSubModule WorkTypes = new FullSubModule(module, "workTypes");
     }

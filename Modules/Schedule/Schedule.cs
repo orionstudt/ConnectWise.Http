@@ -14,7 +14,7 @@ namespace ConnectWise.Http.Modules.Schedule
 
         public static ScheduleColorsSubModule ScheduleColors = new ScheduleColorsSubModule(module, "colors");
 
-        public static BaseSubModuleChild ScheduleDetails = new BaseSubModuleChild(module, "entries", "details");
+        public static GetSubModuleChild ScheduleDetails = new GetSubModuleChild(module, "entries", "details");
 
         public static FullSubModule ScheduleEntries = new FullSubModule(module, "entries");
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Time.SubModules
 {
-    public class TimeSheetsSubModule : BaseSubModule
+    public class TimeSheetsSubModule : GetSubModule
     {
         internal TimeSheetsSubModule(string module, string endpoint) : base(module, endpoint) { }
 

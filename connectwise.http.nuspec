@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/orionstudt/ConnectWise.Http</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Finished CompanyModule and fully completed ExpenseModule. Added Search endpoint to Tickets with ServiceModule.</releaseNotes>
+    <releaseNotes>Resolved bugs with 'Fields' &amp; 'Columns' properites of CWRequestConditions not being written correctly into request URL. Added Finance Module &amp; added Members endpoint for Systems Moduel.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>ConnectWise Manage REST API HttpClient</tags>
   </metadata>
