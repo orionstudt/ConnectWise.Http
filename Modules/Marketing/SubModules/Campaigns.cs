@@ -19,8 +19,7 @@ namespace ConnectWise.Http.Modules.Marketing.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest GetActivitiesRequest(int campaignId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.Pagination);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{campaignId}/activities{conditionStr}");
         }
 
@@ -42,8 +41,7 @@ namespace ConnectWise.Http.Modules.Marketing.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest GetOpportunitiesRequest(int campaignId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.Pagination);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{campaignId}/opportunities{conditionStr}");
         }
 

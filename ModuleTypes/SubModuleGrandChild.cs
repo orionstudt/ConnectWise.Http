@@ -47,7 +47,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest GetRequest(int id, int childId, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.StandardConditions) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.StandardConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}{conditionStr}");
         }
 
@@ -60,7 +60,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest CountRequest(int id, int childId, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/count{conditionStr}");
         }
     }
@@ -82,7 +82,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}");
         }
     }
@@ -105,7 +105,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest ReplaceRequest(int id, int childId, int grandChildId, string serializedContent, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Put, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", serializedContent);
         }
 
@@ -134,7 +134,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest UpdateRequest(int id, int childId, int grandChildId, IEnumerable<CWPatch> updates, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             var patches = updates.Any() ? updates.ToList() : new List<CWPatch>();
             return new CWRequest(CWHttpMethod.Patch, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}", JsonConvert.SerializeObject(patches));
         }
@@ -157,7 +157,7 @@ namespace ConnectWise.Http.ModuleTypes
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public virtual CWRequest CreateRequest(int id, int childId, string serializedContent, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.CountConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix(id, childId)}{conditionStr}", serializedContent);
         }
 

@@ -63,7 +63,7 @@ namespace ConnectWise.Http
         internal string ToUriConditions(CWConditionOptions options, bool appendToExisting = false)
         {
             var sb = new StringBuilder();
-            bool append = appendToExisting;
+            var append = appendToExisting;
             // Conditions
             buildConditionString(options.Conditions, "conditions", Conditions, Delimiter.And, append, out append);
             // ChildConditions
@@ -133,8 +133,8 @@ namespace ConnectWise.Http
 
         private string and(IEnumerable<string> enumerable)
         {
-            bool didFirst = false;
-            string output = string.Empty;
+            var didFirst = false;
+            var output = string.Empty;
             foreach (var element in enumerable)
             {
                 if (!string.IsNullOrWhiteSpace(element))

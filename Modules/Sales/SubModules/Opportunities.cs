@@ -20,8 +20,7 @@ namespace ConnectWise.Http.Modules.Sales.SubModules
         /// <returns></returns>
         public CWRequest ConvertToServiceTicketRequest(int opportunityId, string serializedBody, CWRequestConditions conditions = null)
         {
-            if (conditions == null) conditions = new CWRequestConditions();
-            var conditionStr = conditions.ToUriConditions(CWConditionOptions.OnlyFields);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{opportunityId}/convertToServiceTicket{conditionStr}");
         }
 
@@ -34,8 +33,7 @@ namespace ConnectWise.Http.Modules.Sales.SubModules
         /// <returns></returns>
         public CWRequest ConvertToProjectRequest(int opportunityId, string serializedBody, CWRequestConditions conditions = null)
         {
-            if (conditions == null) conditions = new CWRequestConditions();
-            var conditionStr = conditions.ToUriConditions(CWConditionOptions.OnlyFields);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{opportunityId}/convertToProject{conditionStr}");
         }
 
@@ -48,8 +46,7 @@ namespace ConnectWise.Http.Modules.Sales.SubModules
         /// <returns></returns>
         public CWRequest ConvertToSalesOrderRequest(int opportunityId, string serializedBody, CWRequestConditions conditions = null)
         {
-            if (conditions == null) conditions = new CWRequestConditions();
-            var conditionStr = conditions.ToUriConditions(CWConditionOptions.OnlyFields);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{opportunityId}/convertToSalesOrder{conditionStr}");
         }
 
@@ -62,8 +59,7 @@ namespace ConnectWise.Http.Modules.Sales.SubModules
         /// <returns></returns>
         public CWRequest ConvertToAgreementRequest(int opportunityId, string serializedBody, CWRequestConditions conditions = null)
         {
-            if (conditions == null) conditions = new CWRequestConditions();
-            var conditionStr = conditions.ToUriConditions(CWConditionOptions.OnlyFields);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{opportunityId}/convertToAgreement{conditionStr}");
         }
     }

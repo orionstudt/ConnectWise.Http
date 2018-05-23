@@ -19,7 +19,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest CopyRequest(string content, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/copy{conditionStr}", content);
         }
     }

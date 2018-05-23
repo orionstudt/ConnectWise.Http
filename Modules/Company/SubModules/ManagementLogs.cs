@@ -19,8 +19,7 @@ namespace ConnectWise.Http.Modules.Company.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest GetRequest(int id, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.StandardConditions);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.StandardConditions) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{id}/logs{conditionStr}");
         }
 

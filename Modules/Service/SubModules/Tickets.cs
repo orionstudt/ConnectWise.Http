@@ -19,8 +19,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest SearchRequest(CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.Pagination);
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination) : string.Empty;
             return new CWRequest(CWHttpMethod.Post, $"search{conditionStr}", conditions.ToBodyConditions());
         }
 
@@ -32,9 +31,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ActivitiesRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
+            if (conditions == null) conditions = new CWRequestConditions();
             conditions.Conditions = new string[] { $"ticket/id={ticketId}" };
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
+            var conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
             return new CWRequest(CWHttpMethod.Get, $"sales/activities{conditionStr}");
         }
 
@@ -60,9 +59,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest TimeEntriesRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
+            if (conditions == null) conditions = new CWRequestConditions();
             conditions.Conditions = new string[] { "(chargeToType=\"ServiceTicket\" OR chargeToType=\"ProjectTicket\")", $"chargeToId={ticketId}" };
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
+            var conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
             return new CWRequest(CWHttpMethod.Get, $"time/entries{conditionStr}");
         }
 
@@ -88,9 +87,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ScheduleEntriesRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
+            if (conditions == null) conditions = new CWRequestConditions();
             conditions.Conditions = new string[] { "type/id=4", $"objectId={ticketId}" };
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
+            var conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
             return new CWRequest(CWHttpMethod.Get, $"schedule/entries{conditionStr}");
         }
 
@@ -116,7 +115,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest DocumentsRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination, appendToExisting: true) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination, appendToExisting: true) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"system/documents?recordType=Ticket&recordId={ticketId}{conditionStr}");
         }
 
@@ -138,9 +137,9 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ProductsRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            if (conditions == null) { conditions = new CWRequestConditions(); }
+            if (conditions == null) conditions = new CWRequestConditions();
             conditions.Conditions = new string[] { "chargeToType=\"Ticket\"", $"chargeToId={ticketId}" };
-            string conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
+            var conditionStr = conditions.ToUriConditions(CWConditionOptions.ConditionsAndPaging);
             return new CWRequest(CWHttpMethod.Get, $"procurement/products{conditionStr}");
         }
 
@@ -166,7 +165,7 @@ namespace ConnectWise.Http.Modules.Service.SubModules
         /// <returns>CWRequest to be sent using CWHttpClient.</returns>
         public CWRequest ConfigurationsRequest(int ticketId, CWRequestConditions conditions = null)
         {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination) : string.Empty;
+            var conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.Pagination) : string.Empty;
             return new CWRequest(CWHttpMethod.Get, $"{getPrefix()}/{ticketId}/configurations{conditionStr}");
         }
 
