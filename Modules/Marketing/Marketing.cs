@@ -10,30 +10,30 @@ namespace ConnectWise.Http.Modules.Marketing
 {
     public static class MarketingModule
     {
-        private static string module = "marketing";
+        private const string module = "marketing";
 
-        public static FullSubModuleChild CampaignAudits = new FullSubModuleChild(module, "campaigns", "audits");
+        public static readonly FullSubModuleChild CampaignAudits = new FullSubModuleChild(module, "campaigns", "audits");
 
-        public static FullSubModuleChild CampaignEmailsOpened = new FullSubModuleChild(module, "campaigns", "emailsOpened");
+        public static readonly FullSubModuleChild CampaignEmailsOpened = new FullSubModuleChild(module, "campaigns", "emailsOpened");
 
-        public static FullSubModuleChild CampaignFormsSubmitted = new FullSubModuleChild(module, "campaigns", "formsSubmitted");
+        public static readonly FullSubModuleChild CampaignFormsSubmitted = new FullSubModuleChild(module, "campaigns", "formsSubmitted");
 
-        public static FullSubModuleChild CamapaignLinksClicked = new FullSubModuleChild(module, "campaigns", "linksClicked");
+        public static readonly FullSubModuleChild CamapaignLinksClicked = new FullSubModuleChild(module, "campaigns", "linksClicked");
 
-        public static FullSubModule CampaignStatuses = new FullSubModule(module, "campaigns/statuses");
+        public static readonly FullSubModule CampaignStatuses = new FullSubModule(module, "campaigns/statuses");
 
-        public static FullSubModule CampaignSubTypes = new FullSubModule(module, "campaigns/subTypes");
+        public static readonly FullSubModule CampaignSubTypes = new FullSubModule(module, "campaigns/subTypes");
 
-        public static FullSubModule CampaignTypes = new FullSubModule(module, "campaigns/types");
+        public static readonly FullSubModule CampaignTypes = new FullSubModule(module, "campaigns/types");
 
-        public static CampaignsSubModule Campaigns = new CampaignsSubModule(module, "campaigns");
+        public static readonly CampaignsSubModule Campaigns = new CampaignsSubModule(module, "campaigns");
 
-        public static FullSubModuleChild GroupCompanies = new FullSubModuleChild(module, "groups", "companies");
+        public static readonly FullSubModuleChild GroupCompanies = new FullSubModuleChild(module, "groups", "companies");
 
-        public static FullSubModuleChild GroupContacts = new FullSubModuleChild(module, "groups", "contacts");
+        public static readonly FullSubModuleChild GroupContacts = new FullSubModuleChild(module, "groups", "contacts");
 
-        public static FullSubModule Groups = new FullSubModule(module, "groups");
+        public static readonly FullSubModule Groups = new FullSubModule(module, "groups");
 
-        public static GetSubModuleChild LegacyCampaignSubTypes = new GetSubModuleChild(module, "campaigns/types", "subTypes");
+        public static readonly GetSubModuleChild LegacyCampaignSubTypes = new GetSubModuleChild(module, "campaigns/types", "subTypes");
     }
 }

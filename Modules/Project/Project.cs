@@ -10,18 +10,18 @@ namespace ConnectWise.Http.Modules.Project
 {
     public static class ProjectModule
     {
-        private static string module = "project";
+        private const string module = "project";
 
-        public static ProjectContactsSubModule ProjectContacts = new ProjectContactsSubModule(module, "projects", "contacts");
+        public static readonly ProjectContactsSubModule ProjectContacts = new ProjectContactsSubModule(module, "projects", "contacts");
 
-        public static FullSubModuleChild ProjectNotes = new FullSubModuleChild(module, "projects", "notes");
+        public static readonly FullSubModuleChild ProjectNotes = new FullSubModuleChild(module, "projects", "notes");
 
-        public static FullSubModuleChild ProjectPhases = new FullSubModuleChild(module, "projects", "phases");
+        public static readonly FullSubModuleChild ProjectPhases = new FullSubModuleChild(module, "projects", "phases");
 
-        public static FullSubModule ProjectStatuses = new FullSubModule(module, "statuses");
+        public static readonly FullSubModule ProjectStatuses = new FullSubModule(module, "statuses");
 
-        public static FullSubModule Projects = new FullSubModule(module, "projects");
+        public static readonly FullSubModule Projects = new FullSubModule(module, "projects");
 
-        public static FullSubModuleChild ProjectTeammembers = new FullSubModuleChild(module, "projects", "teamMembers");
+        public static readonly FullSubModuleChild ProjectTeammembers = new FullSubModuleChild(module, "projects", "teamMembers");
     }
 }

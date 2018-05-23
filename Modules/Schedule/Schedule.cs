@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Schedule
 {
-    public static class ScheduleModule
+    public static readonly class ScheduleModule
     {
-        private static string module = "schedule";
+        private const string module = "schedule";
 
-        public static ScheduleColorsSubModule ScheduleColors = new ScheduleColorsSubModule(module, "colors");
+        public static readonly ScheduleColorsSubModule ScheduleColors = new ScheduleColorsSubModule(module, "colors");
 
-        public static GetSubModuleChild ScheduleDetails = new GetSubModuleChild(module, "entries", "details");
+        public static readonly GetSubModuleChild ScheduleDetails = new GetSubModuleChild(module, "entries", "details");
 
-        public static FullSubModule ScheduleEntries = new FullSubModule(module, "entries");
+        public static readonly FullSubModule ScheduleEntries = new FullSubModule(module, "entries");
 
-        public static UpdateSubModule ScheduleReminderTimes = new UpdateSubModule(module, "reminderTimes");
+        public static readonly UpdateSubModule ScheduleReminderTimes = new UpdateSubModule(module, "reminderTimes");
 
-        public static FullSubModule ScheduleStatuses = new FullSubModule(module, "statuses");
+        public static readonly FullSubModule ScheduleStatuses = new FullSubModule(module, "statuses");
 
-        public static FullSubModule ScheduleTypes = new FullSubModule(module, "types");
+        public static readonly FullSubModule ScheduleTypes = new FullSubModule(module, "types");
     }
 }
