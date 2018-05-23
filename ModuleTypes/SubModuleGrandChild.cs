@@ -32,7 +32,7 @@ namespace ConnectWise.Http.ModuleTypes
     }
 
     /// <summary>
-    /// GrandChild-Module endpoint class that contains GET, GETBYID, & COUNT.
+    /// GrandChild-Module endpoint class that contains GET & COUNT.
     /// </summary>
     public class BaseSubModuleGrandChild : SubModuleGrandChild
     {
@@ -52,20 +52,6 @@ namespace ConnectWise.Http.ModuleTypes
         }
 
         /// <summary>
-        /// Generic GET request for the specified entity's grandchild matching the provided GrandChildID.
-        /// </summary>
-        /// <param name="id">The specified entity ID.</param>
-        /// <param name="childId">The specified entity's child ID.</param>
-        /// <param name="grandChildId">The specified entity's grandchild ID.</param>
-        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
-        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
-        public virtual CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
-        {
-            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
-            return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}");
-        }
-
-        /// <summary>
         /// Generic GET request across the specified entity's grandchild collection using the conditions provided.
         /// </summary>
         /// <param name="id">The specified entity ID.</param>
@@ -80,9 +66,31 @@ namespace ConnectWise.Http.ModuleTypes
     }
 
     /// <summary>
+    /// GrandChild-Module endpoint class that contains GET, GETBYID, & COUNT.
+    /// </summary>
+    public class GetSubModuleGrandChild : BaseSubModuleGrandChild
+    {
+        internal GetSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
+
+        /// <summary>
+        /// Generic GET request for the specified entity's grandchild matching the provided GrandChildID.
+        /// </summary>
+        /// <param name="id">The specified entity ID.</param>
+        /// <param name="childId">The specified entity's child ID.</param>
+        /// <param name="grandChildId">The specified entity's grandchild ID.</param>
+        /// <param name="conditions">This endpoint only accepts 'Fields.'</param>
+        /// <returns>CWRequest to be sent using CWHttpClient.</returns>
+        public virtual CWRequest GetRequest(int id, int childId, int grandChildId, CWRequestConditions conditions = null)
+        {
+            string conditionStr = conditions != null ? conditions.ToUriConditions(CWConditionOptions.OnlyFields) : string.Empty;
+            return new CWRequest(CWHttpMethod.Get, $"{getPrefix(id, childId)}/{grandChildId}{conditionStr}");
+        }
+    }
+
+    /// <summary>
     /// GrandChild-Module endpoint class that contains GET, GETBYID, COUNT, REPLACE, & UPDATE.
     /// </summary>
-    public class UpdateSubModuleGrandChild : BaseSubModuleGrandChild
+    public class UpdateSubModuleGrandChild : GetSubModuleGrandChild
     {
         internal UpdateSubModuleGrandChild(string module, string endpoint, string child, string grandChild) : base(module, endpoint, child, grandChild) { }
 
