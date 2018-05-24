@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Company
 {
-    public static readonly class CompanyModule
+    public static class CompanyModule
     {
         private const string module = "company";
 

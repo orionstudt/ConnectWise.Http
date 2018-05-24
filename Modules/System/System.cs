@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.System
 {
-    public static readonly class SystemModule
+    public static class SystemModule
     {
         private const string module = "system";
 

@@ -24,9 +24,10 @@ namespace ConnectWise.Http
         private string companyName;
         private string domain;
         private string cookieValue;
+        private string version;
+        private string accept;
+        //private string accept = "application/vnd.connectwise.com+json; version=3.0.0"; // This accept string was causing bugs on some endpoints
         private AuthenticationHeaderValue auth;
-        private const string version = "3.0";
-        private const string accept = "application/vnd.connectwise.com+json; version=3.0.0";
         private HttpClient client;
 
         /// <summary>
@@ -34,11 +35,7 @@ namespace ConnectWise.Http
         /// </summary>
         public CWHttpClient(CWApiSettings settings)
         {
-            // Passthrough
-            companyName = settings.CompanyName;
-            domain = settings.Domain;
-            cookieValue = settings.CookieValue;
-            auth = settings.Authentication.BuildHeader(companyName);
+            init(settings);
         }
 
         /// <summary>
@@ -48,9 +45,16 @@ namespace ConnectWise.Http
         {
             // Passthrough
             this.client = client;
+            init(settings);
+        }
+
+        private void init(CWApiSettings settings)
+        {
             companyName = settings.CompanyName;
             domain = settings.Domain;
             cookieValue = settings.CookieValue;
+            version = settings.UriVersion;
+            accept = settings.Accept;
             auth = settings.Authentication.BuildHeader(companyName);
         }
 

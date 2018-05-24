@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConnectWise.Http.Modules.Schedule
 {
-    public static readonly class ScheduleModule
+    public static class ScheduleModule
     {
         private const string module = "schedule";
 
