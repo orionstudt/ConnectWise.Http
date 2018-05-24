@@ -62,7 +62,7 @@ namespace ConnectWise.Http
 
         internal string ToUriConditions(CWConditionOptions options, bool appendToExisting = false)
         {
-            var sb = new StringBuilder();
+            sb = new StringBuilder();
             var append = appendToExisting;
             // Conditions
             buildConditionString(options.Conditions, "conditions", Conditions, Delimiter.And, append, out append);
