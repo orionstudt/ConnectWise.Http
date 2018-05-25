@@ -99,7 +99,7 @@ namespace ConnectWise.Http
             // Check Response
             if (response != null)
             {
-                return new CWResponse(response);
+                return new CWResponse(response, await response.Content.ReadAsStringAsync());
             }
             return new CWResponse("There was an error making the request to the CW Manage API.");
         }
@@ -120,7 +120,7 @@ namespace ConnectWise.Http
                 var infoResponse = await getCompanyInfoAsync(cts);
                 if (!infoResponse.IsSuccessful)
                 {
-                    return new CWResponse<T>(infoResponse.Response, false);
+                    return new CWResponse<T>(infoResponse.Response, infoResponse.Result, false);
                 }
             }
 
@@ -146,7 +146,7 @@ namespace ConnectWise.Http
             // Check Response
             if (response != null)
             {
-                return new CWResponse<T>(response);
+                return new CWResponse<T>(response, await response.Content.ReadAsStringAsync());
             }
             return new CWResponse<T>("There was an error making the request to the CW Manage API.");
         }
@@ -223,16 +223,12 @@ namespace ConnectWise.Http
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize Company Info
-                    var privateSetterSettings = new JsonSerializerSettings
-                    {
-                        ContractResolver = new PrivateSetterContractResolver()
-                    };
-                    Info = JsonConvert.DeserializeObject<CWCompanyInfo>(response.Content.ReadAsStringAsync().Result, privateSetterSettings);
+                    Info = JsonConvert.DeserializeObject<CWCompanyInfo>(response.Content.ReadAsStringAsync().Result, CWJsonSerializer.PrivateSetters);
 
                     // Return Success
                     return new CWResponse();
                 }
-                return new CWResponse(response);
+                return new CWResponse(response, await response.Content.ReadAsStringAsync());
             }
             return new CWResponse("Unable to pull CW Company Information required to form future CWRequests.");
         }

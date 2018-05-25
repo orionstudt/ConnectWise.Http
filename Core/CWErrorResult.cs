@@ -12,9 +12,12 @@ namespace ConnectWise.Http
 
         public string Message { get; private set; }
 
-        public List<CWError> Errors { get; private set; }
+        public IEnumerable<CWError> Errors { get; private set; }
 
-        internal CWErrorResult() { }
+        internal CWErrorResult()
+        {
+            Errors = new List<CWError>();
+        }
 
         internal CWErrorResult(string code, string message)
         {

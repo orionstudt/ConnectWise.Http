@@ -17,20 +17,22 @@ namespace ConnectWise.Http.Json
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             var prop = base.CreateProperty(member, memberSerialization);
-            if (prop.Writable) { return prop; }
+            
+            if (!prop.Writable)
+            {
+                var property = member as PropertyInfo;
+                if (property != null) prop.Writable = property.GetSetMethod(true) != null;
+            }
 
-            prop.Writable = member.IsPropertyWithSetter();
             return prop;
         }
     }
 
-    internal static class MemberInfoExtensions
+    internal static class CWJsonSerializer
     {
-        internal static bool IsPropertyWithSetter(this MemberInfo member)
+        public static JsonSerializerSettings PrivateSetters => new JsonSerializerSettings
         {
-            var property = member as PropertyInfo;
-            if (property == null) { return false; }
-            return property.GetSetMethod(true) != null;
-        }
+            ContractResolver = new PrivateSetterContractResolver()
+        };
     }
 }

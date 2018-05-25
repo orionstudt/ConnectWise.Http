@@ -45,20 +45,16 @@ namespace ConnectWise.Http
             Result = error;
         }
 
-        internal CWResponseBase(HttpResponseMessage response)
+        internal CWResponseBase(HttpResponseMessage response, string result)
         {
             IsSuccessful = response.IsSuccessStatusCode;
-            Result = response.Content.ReadAsStringAsync().Result;
+            Result = result;
             Response = response;
             if (!IsSuccessful)
             {
-                var privateSetterSettings = new JsonSerializerSettings
-                {
-                    ContractResolver = new PrivateSetterContractResolver()
-                };
                 try
                 {
-                    Error = JsonConvert.DeserializeObject<CWErrorResult>(Result, privateSetterSettings);
+                    Error = JsonConvert.DeserializeObject<CWErrorResult>(Result, CWJsonSerializer.PrivateSetters);
                 }
                 catch (Exception e)
                 {
@@ -113,7 +109,7 @@ namespace ConnectWise.Http
 
         internal CWResponse(string error) : base(error) { }
 
-        internal CWResponse(HttpResponseMessage response) : base(response) { }
+        internal CWResponse(HttpResponseMessage response, string result) : base(response, result) { }
     }
 
     /// <summary>
@@ -134,7 +130,7 @@ namespace ConnectWise.Http
 
         internal CWResponse(string error) : base(error) { }
 
-        internal CWResponse(HttpResponseMessage response, bool attemptDeserialization = true) : base(response)
+        internal CWResponse(HttpResponseMessage response, string result, bool attemptDeserialization = true) : base(response, result)
         {
             if (IsSuccessful && attemptDeserialization)
             {
