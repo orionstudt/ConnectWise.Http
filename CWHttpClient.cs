@@ -51,7 +51,7 @@ namespace ConnectWise.Http
         private void init(CWApiSettings settings)
         {
             companyName = settings.CompanyName;
-            domain = settings.Domain;
+            domain = settings.Domain.TrimEnd('/');
             cookieValue = settings.CookieValue;
             version = settings.UriVersion;
             accept = settings.Accept;
@@ -156,7 +156,7 @@ namespace ConnectWise.Http
             // Build Request
             var httpRequest = new HttpRequestMessage
             {
-                RequestUri = new Uri($"{domain.TrimEnd('/')}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
+                RequestUri = new Uri($"{domain}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
             };
             // Content
             if (request.Content != null) { httpRequest.Content = request.Content; }
@@ -196,7 +196,7 @@ namespace ConnectWise.Http
             // Build request
             var request = new HttpRequestMessage
             {
-                RequestUri = new Uri($"{domain.TrimEnd('/')}/login/companyInfo/{companyName}")
+                RequestUri = new Uri($"{domain}/login/companyInfo/{companyName}")
             };
             request.Headers.Clear();
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
