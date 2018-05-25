@@ -156,7 +156,7 @@ namespace ConnectWise.Http
             // Build Request
             var httpRequest = new HttpRequestMessage
             {
-                RequestUri = new Uri($"{domain}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
+                RequestUri = new Uri($"{domain.TrimEnd('/')}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
             };
             // Content
             if (request.Content != null) { httpRequest.Content = request.Content; }
