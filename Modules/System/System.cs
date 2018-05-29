@@ -14,9 +14,9 @@ namespace ConnectWise.Http.Modules.System
 
         public static readonly BaseSubModule AuditTrail = new BaseSubModule(module, "auditTrail");
 
-        // AuthAnvils
+        public static readonly AuthAnvilsSubModule AuthAnvils = new AuthAnvilsSubModule(module, "authAnvils");
 
-        // Batch
+        public static readonly BatchSubModule Batch = new BatchSubModule(module, "batch");
 
         public static readonly FullSubModule Callbacks = new FullSubModule(module, "callbacks");
 
@@ -38,9 +38,9 @@ namespace ConnectWise.Http.Modules.System
 
         public static readonly FullSubModule Departments = new FullSubModule(module, "departments");
 
-        // Documents
+        public static readonly DocumentsSubModule Documents = new DocumentsSubModule(module, "documents");
 
-        // DocumentsSetup
+        public static readonly DocumentsSetupSubModule DocumentsSetup = new DocumentsSetupSubModule(module, "mycompany/documents");
 
         public static readonly FullSubModule EPayConfigurations = new FullSubModule(module, "ePayConfigurations");
 
@@ -54,13 +54,13 @@ namespace ConnectWise.Http.Modules.System
 
         public static readonly FullSubModule IMaps = new FullSubModule(module, "imaps");
 
-        // ImportsMassMaintenance
+        public static readonly ImportMassMaintenanceSubModule ImportsMassMaintenance = new ImportMassMaintenanceSubModule(module, "importMassMaintenance");
 
         public static readonly FullSubModule InOutBoards = new FullSubModule(module, "inOutBoards");
 
         public static readonly FullSubModule InOutTypes = new FullSubModule(module, "inOutTypes");
 
-        // Info
+        public static readonly InfoSubModule Info = new InfoSubModule(module, "info");
 
         public static readonly FullSubModule IntegratorLogins = new FullSubModule(module, "integratorLogins");
 
@@ -80,7 +80,7 @@ namespace ConnectWise.Http.Modules.System
 
         public static readonly FullSubModule Locations = new FullSubModule(module, "locations");
 
-        // ManagementNetworkSecurity
+        public static readonly ManagementNetworkSecuritiesSubModule ManagementNetworksSecurity = new ManagementNetworkSecuritiesSubModule(module, "managementNetworkSecurities");
 
         public static readonly FullSubModuleChild MemberAccruals = new FullSubModuleChild(module, "members", "accruals");
 

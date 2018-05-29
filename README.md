@@ -104,7 +104,7 @@ Below are the modules currently implemented. You can use the CWRequest object to
 |Expense     |**Yes**    |
 |Finance     |**Yes**    |
 |Marketing   |**Yes**    |
-|Procurement |No         |
+|Procurement |**Yes**    |
 |Project     |**Yes**    |
 |Sales       |**Yes**    |
 |Schedule    |**Yes**    |
