@@ -1,104 +1,24 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9558FA1E-40F5-4E1F-BB72-4105FCF83647}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConnectWise.Http</RootNamespace>
-    <AssemblyName>ConnectWise.Http</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Joshua Studt</Authors>
+    <Description>An HttpClient wrapper for interacting with the ConnectWise Manage REST API.</Description>
+    <PackageReleaseNotes>Refactored for .NET Standard.</PackageReleaseNotes>
+    <Copyright>2018</Copyright>
+    <PackageLicenseUrl>https://github.com/orionstudt/ConnectWise.Http/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/orionstudt/ConnectWise.Http</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/orionstudt/ConnectWise.Http</RepositoryUrl>
+    <PackageTags>ConnectWise Manage REST API HttpClient</PackageTags>
+    <RepositoryType>Class Library</RepositoryType>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.9.0</FileVersion>
+    <Version>1.0.9</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\CWCompanyInfo.cs" />
-    <Compile Include="Core\CWErrorResult.cs" />
-    <Compile Include="Core\CWPatch.cs" />
-    <Compile Include="CWHttpClient.cs" />
-    <Compile Include="Core\CWHttpMethod.cs" />
-    <Compile Include="Modules\Company\Company.cs" />
-    <Compile Include="Modules\Company\SubModules\Companies.cs" />
-    <Compile Include="Modules\Company\SubModules\CompanyPickerItems.cs" />
-    <Compile Include="Modules\Company\SubModules\Contacts.cs" />
-    <Compile Include="Modules\Company\SubModules\ManagementExecuteManagedItSyncs.cs" />
-    <Compile Include="Modules\Company\SubModules\ManagementLogs.cs" />
-    <Compile Include="Modules\Expense\Expense.cs" />
-    <Compile Include="Modules\Expense\SubModules\ExpenseReports.cs" />
-    <Compile Include="Modules\Finance\Finance.cs" />
-    <Compile Include="Modules\Finance\SubModules\AccountingBatches.cs" />
-    <Compile Include="Modules\Finance\SubModules\ClosedInvoices.cs" />
-    <Compile Include="Modules\Finance\SubModules\InvoicePayments.cs" />
-    <Compile Include="Modules\Finance\SubModules\Invoices.cs" />
-    <Compile Include="Modules\Marketing\Marketing.cs" />
-    <Compile Include="Modules\Marketing\SubModules\Campaigns.cs" />
-    <Compile Include="Modules\Project\SubModules\ProjectContacts.cs" />
-    <Compile Include="Modules\Sales\Sales.cs" />
-    <Compile Include="Modules\Sales\SubModules\Opportunities.cs" />
-    <Compile Include="Modules\Schedule\Schedule.cs" />
-    <Compile Include="Modules\Schedule\SubModules\ScheduleColors.cs" />
-    <Compile Include="Modules\Service\SubModules\Boards.cs" />
-    <Compile Include="Modules\Service\SubModules\Priorities.cs" />
-    <Compile Include="Modules\System\SubModules\Members.cs" />
-    <Compile Include="Modules\System\System.cs" />
-    <Compile Include="Modules\Time\SubModules\TimeEntries.cs" />
-    <Compile Include="Modules\Time\SubModules\TimePeriodSetups.cs" />
-    <Compile Include="Modules\Time\SubModules\TimeSheets.cs" />
-    <Compile Include="Modules\Time\Time.cs" />
-    <Compile Include="ModuleTypes\SubModuleChild.cs" />
-    <Compile Include="ModuleTypes\SubModuleGrandChild.cs" />
-    <Compile Include="Settings\CWApiSettings.cs" />
-    <Compile Include="Core\CWResponse.cs" />
-    <Compile Include="Settings\IntegratorAuthSettings.cs" />
-    <Compile Include="Settings\MemberAuthSettings.cs" />
-    <Compile Include="Core\CWRequestConditions.cs" />
-    <Compile Include="Core\CWRequest.cs" />
-    <Compile Include="Json\PrivateSetterContractResolvers.cs" />
-    <Compile Include="ModuleTypes\SubModule.cs" />
-    <Compile Include="Modules\Project\Project.cs" />
-    <Compile Include="Modules\Service\Service.cs" />
-    <Compile Include="Modules\Service\SubModules\Tickets.cs" />
-    <Compile Include="Settings\IAuthSettings.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
