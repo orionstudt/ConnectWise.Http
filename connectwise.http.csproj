@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Joshua Studt</Authors>
-    <Description>An HttpClient wrapper for interacting with the ConnectWise Manage REST API.</Description>
+    <Description>A .NET HttpClient wrapper for interacting with the ConnectWise Manage REST API.</Description>
     <PackageReleaseNotes>Refactored for .NET Standard.</PackageReleaseNotes>
     <Copyright>2018</Copyright>
     <PackageLicenseUrl>https://github.com/orionstudt/ConnectWise.Http/blob/master/LICENSE</PackageLicenseUrl>
@@ -15,6 +15,7 @@
     <FileVersion>1.0.9.0</FileVersion>
     <Version>1.0.9</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
