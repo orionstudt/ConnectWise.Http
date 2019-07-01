@@ -23,6 +23,9 @@ var settings = new CWApiSettings(
 var client = new CWHttpClient(settings);
 ```
 
+### Accept Header
+The ConnectWise API recommends that you specify which version of the target endpoint you would like via the Accept Header, with a value such as `application/vnd.connectwise.com+json; version=3.0.0`. Currently the `CWApiSettings` object defaults the Accept Header to `application/json` because of previously encountered bugs with some endpoints, but if you are receiving unexpected results consider changing the Accept Header to one of their versioned headers.
+
 #### Providing an existing HttpClient
 There is also an overloaded constructor that allows you to provide an existing instance of an `HttpClient`, so that `CWHttpClient` does not create its own `HttpClient` instance. It is generally good practice to only construct & use a single `HttpClient` instance throughout the lifetime of your application (with some exceptions relating to when DNS changes are made during the lifetime of your application) - this is because each `HttpClient` constructed will claim a web socket.
 
