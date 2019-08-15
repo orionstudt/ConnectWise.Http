@@ -60,7 +60,7 @@ namespace ConnectWise.Http
 
         /// <param name="domain">The base URL of your ConnectWise Manage installation. Example: https://cw.siteurl.com</param>
         /// <param name="companyName">The 'short' Company Name that you use when you login to ConnectWise Manage.</param>
-        /// /// <param name="clientId">The clientId generated from ConnectWise documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F </param>
+        /// <param name="clientId">The clientId generated from ConnectWise documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F </param>
         /// <param name="auth">The Authentication options. Use either CWMemberAuthentication or CWIntegratorLoginAuthentication.</param>
         /// <param name="cookieValue">If you're cloud hosted, ConnectWise will provide you with a cookie identifier.</param>
         /// <param name="uriVersion">The version that appears in the Uri.</param>
