@@ -22,6 +22,7 @@ namespace ConnectWise.Http
         public CWCompanyInfo Info { get; private set; }
 
         private readonly string companyName;
+        private readonly string clientId;
         private readonly string domain;
         private readonly string cookieValue;
         private readonly string version;
@@ -37,6 +38,7 @@ namespace ConnectWise.Http
         public CWHttpClient(CWApiSettings settings, HttpClient client = null)
         {
             companyName = settings.CompanyName;
+            clientId = settings.ClientId;
             domain = settings.Domain.TrimEnd('/');
             cookieValue = settings.CookieValue;
             version = settings.UriVersion;
@@ -189,6 +191,7 @@ namespace ConnectWise.Http
             // Headers
             httpRequest.Headers.Clear();
             httpRequest.Headers.TryAddWithoutValidation("Accept", accept);
+            httpRequest.Headers.TryAddWithoutValidation("clientId", clientId);
             httpRequest.Headers.Authorization = auth;
             if (!string.IsNullOrWhiteSpace(cookieValue)) { httpRequest.Headers.TryAddWithoutValidation("Cookie", string.Concat("cw-app-id=", cookieValue)); }
             // Method
