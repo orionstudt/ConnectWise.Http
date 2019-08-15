@@ -22,6 +22,11 @@ namespace ConnectWise.Http
         public string CompanyName { get; set; }
 
         /// <summary>
+        /// The ClientId generated in the ConnectWise Documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F.
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
         /// The Authentication options. Use IntegratorAuthSettings, MemberAuthSettings, or implement your own with IAuthSettings.
         /// </summary>
         public IAuthSettings Authentication { get; set; }
@@ -43,31 +48,34 @@ namespace ConnectWise.Http
 
         /// <param name="domain">The base URL of your ConnectWise Manage installation. Example: https://cw.siteurl.com</param>
         /// <param name="companyName">The 'short' Company Name that you use when you login to ConnectWise Manage.</param>
+        /// <param name="clientId">The clientId generated from ConnectWise documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F </param>
         /// <param name="publicKey">The public API key - setup with Member Authentication.</param>
         /// <param name="privateKey">The private API key - setup with Member Authentication.</param>
         /// <param name="uriVersion">The version that appears in the Uri.</param>
         /// <param name="accept">The Accept Header value.</param>
-        public CWApiSettings(string domain, string companyName, IAuthSettings auth, string uriVersion = "3.0", string accept = "application/json")
+        public CWApiSettings(string domain, string companyName, string clientId, IAuthSettings auth, string uriVersion = "3.0", string accept = "application/json")
         {
-            init(domain, companyName, auth, uriVersion, accept);
+            init(domain, companyName, clientId, auth, uriVersion, accept);
         }
 
         /// <param name="domain">The base URL of your ConnectWise Manage installation. Example: https://cw.siteurl.com</param>
         /// <param name="companyName">The 'short' Company Name that you use when you login to ConnectWise Manage.</param>
+        /// /// <param name="clientId">The clientId generated from ConnectWise documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F </param>
         /// <param name="auth">The Authentication options. Use either CWMemberAuthentication or CWIntegratorLoginAuthentication.</param>
         /// <param name="cookieValue">If you're cloud hosted, ConnectWise will provide you with a cookie identifier.</param>
         /// <param name="uriVersion">The version that appears in the Uri.</param>
         /// <param name="accept">The Accept Header value.</param>
-        public CWApiSettings(string domain, string companyName, IAuthSettings auth, string cookieValue, string uriVersion = "3.0", string accept = "application/json")
+        public CWApiSettings(string domain, string companyName, string clientId, IAuthSettings auth, string cookieValue, string uriVersion = "3.0", string accept = "application/json")
         {
-            init(domain, companyName, auth, uriVersion, accept);
+            init(domain, companyName, clientId, auth, uriVersion, accept);
             CookieValue = cookieValue;
         }
 
-        private void init(string domain, string companyName, IAuthSettings auth, string uriVersion, string accept)
+        private void init(string domain, string companyName, string clientId, IAuthSettings auth, string uriVersion, string accept)
         {
             Domain = domain;
             CompanyName = companyName;
+            ClientId = clientId;
             Authentication = auth;
             UriVersion = uriVersion;
             Accept = accept;
