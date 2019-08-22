@@ -16,6 +16,7 @@ using ConnectWise.Http;
 var settings = new CWApiSettings(
   "https://cw.siteurl.com",
   "companyName",
+  "clientId",
   new MemberAuthSettings("publicKey", "privateKey")
   );
 
