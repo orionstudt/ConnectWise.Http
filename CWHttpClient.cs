@@ -59,36 +59,6 @@ namespace ConnectWise.Http
         /// Method used to send a request to the configured Manage API.
         /// </summary>
         /// <param name="request">CWRequest object. Can be pre-build with various included modules or can be constructed manually.</param>
-        /// <param name="cts">Cancellation Token Source if you would like to be able to cancel mid-request.</param>
-        /// <returns>A generic CWResponse object with no deserialization.</returns>
-        public async Task<CWResponse> SendAsync(CWRequest request, CancellationTokenSource cts = null)
-        {
-            if (cts == null)
-                return await SendAsync(request, cancelToken: default).ConfigureAwait(false);
-
-            return await SendAsync(request, cancelToken: cts.Token).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Method used to send a request to the configured Manage API.
-        /// </summary>
-        /// <typeparam name="T">The deserialization type. Must be a class.</typeparam>
-        /// <param name="request">CWRequest object. Can be pre-build with various included modules or can be constructed manually.</param>
-        /// <param name="cts">Cancellation Token if you would like to be able to cancel mid-request.</param>
-        /// <returns>A CWResponse object that will attempt deserialization to the specified type.</returns>
-        public async Task<CWResponse<T>> SendAsync<T>(CWRequest request, CancellationTokenSource cts = null)
-            where T : class
-        {
-            if (cts == null)
-                return await SendAsync<T>(request, cancelToken: default).ConfigureAwait(false);
-
-            return await SendAsync<T>(request, cancelToken: cts.Token).ConfigureAwait(false);
-        }     
-
-        /// <summary>
-        /// Method used to send a request to the configured Manage API.
-        /// </summary>
-        /// <param name="request">CWRequest object. Can be pre-build with various included modules or can be constructed manually.</param>
         /// <param name="cancelToken">Cancellation Token if you would like to be able to cancel mid-request.</param>
         /// <returns>A generic CWResponse object with no deserialization.</returns>
         public async Task<CWResponse> SendAsync(CWRequest request, CancellationToken cancelToken = default)
@@ -186,14 +156,19 @@ namespace ConnectWise.Http
             {
                 RequestUri = new Uri($"{domain}/{Info.Codebase}/apis/{version}/{request.Endpoint}"),
             };
+
             // Content
-            if (request.Content != null) { httpRequest.Content = request.Content; }
+            if (request.Content != null)
+                httpRequest.Content = request.Content;
+
             // Headers
             httpRequest.Headers.Clear();
             httpRequest.Headers.TryAddWithoutValidation("Accept", accept);
             httpRequest.Headers.TryAddWithoutValidation("clientId", clientId);
             httpRequest.Headers.Authorization = auth;
-            if (!string.IsNullOrWhiteSpace(cookieValue)) { httpRequest.Headers.TryAddWithoutValidation("Cookie", string.Concat("cw-app-id=", cookieValue)); }
+            if (!string.IsNullOrWhiteSpace(cookieValue))
+                httpRequest.Headers.TryAddWithoutValidation("Cookie", string.Concat("cw-app-id=", cookieValue));
+
             // Method
             switch (request.Method)
             {
@@ -213,7 +188,7 @@ namespace ConnectWise.Http
                     httpRequest.Method = HttpMethod.Get;
                     break;
             }
-            // Return
+
             return httpRequest;
         }
 
@@ -228,7 +203,7 @@ namespace ConnectWise.Http
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             // Make request
-            HttpResponseMessage response = null;
+            HttpResponseMessage response;
             try
             {
                 response = await client.SendAsync(request, cancelToken).ConfigureAwait(false);
@@ -250,14 +225,13 @@ namespace ConnectWise.Http
                 if (response.IsSuccessStatusCode)
                 {
                     // Deserialize Company Info
-                    
                     Info = JsonConvert.DeserializeObject<CWCompanyInfo>(content, CWJsonSerializer.PrivateSetters);
-
-                    // Return Success
                     return new CWResponse();
                 }
+
                 return new CWResponse(response, content);
             }
+
             return new CWResponse("Unable to pull CW Company Information required to form future CWRequests.");
         }
 

@@ -4,7 +4,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Joshua Studt</Authors>
     <Description>A .NET HttpClient wrapper for interacting with the ConnectWise Manage REST API.</Description>
-    <PackageReleaseNotes>Add `configureawait` and direct cancellation token overloads rather than cancellation token source method signatures.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added ClientId functionality as per new CW REST API requirements. Remove the CancellationTokenSource overloads on CWHttpClient in lieue of the CancellationToken overloads - sorry for accidentally cause a breaking change last publish with these! CancellationToken is the better method signature here so sticking with this.
+
+Additional Contributor:
+https://github.com/ajwaka</PackageReleaseNotes>
     <Copyright>2019</Copyright>
     <PackageLicenseUrl>https://github.com/orionstudt/ConnectWise.Http/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/orionstudt/ConnectWise.Http</PackageProjectUrl>
@@ -13,7 +16,7 @@
     <RepositoryType>Class Library</RepositoryType>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>

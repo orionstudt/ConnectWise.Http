@@ -22,7 +22,7 @@ namespace ConnectWise.Http
         public string CompanyName { get; set; }
 
         /// <summary>
-        /// The ClientId generated in the ConnectWise Documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F.
+        /// The ClientId generated in the ConnectWise Documentation: https://developer.connectwise.com/ClientID#What_is_a_clientId.3F
         /// </summary>
         public string ClientId { get; set; }
 
