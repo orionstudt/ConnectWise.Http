@@ -12,6 +12,8 @@ namespace ConnectWise.Http.Modules.Finance
     {
         private const string module = "finance";
 
+		public static readonly ExportSubModule Accounting = new ExportSubModule(module, "accounting");
+
         public static readonly AccountingBatchesSubModule AccountingBatches = new AccountingBatchesSubModule(module, "accounting/batches");
 
         public static readonly GetSubModule AccountingPackages = new GetSubModule(module, "accountingPackages");
