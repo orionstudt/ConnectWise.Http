@@ -9,8 +9,8 @@ namespace ConnectWise.Http.Options
 {
     public class IntegratorAuthSettings : IAuthSettings
     {
-        private string login;
-        private string password;
+        private readonly string login;
+        private readonly string password;
 
         public IntegratorAuthSettings(string integratorLogin, string integratorPassword)
         {
