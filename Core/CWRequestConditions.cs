@@ -58,7 +58,7 @@ namespace ConnectWise.Http
             Comma
         }
 
-        private StringBuilder sb = null;
+        private StringBuilder sb;
 
         internal string ToUriConditions(CWConditionOptions options, bool appendToExisting = false)
         {

@@ -21,5 +21,15 @@ namespace ConnectWise.Http.Modules.Finance.SubModules
         {
             return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}/{batchId}/export", serializedExportAccountingBatchRequest);
         }
-    }
+
+		/// <summary>
+		/// Export the payload data from an existing batch.
+		/// </summary>
+		/// <param name="exportAccountingBatchParameters">ExportAccountingBatchParameters object to be included in the body of the request.</param>
+		/// <returns>CWRequest to be sent using CWHttpClient.</returns>
+		public CWRequest ExportRequest(object exportAccountingBatchParameters)
+		{
+			return new CWRequest(CWHttpMethod.Post, $"{getPrefix()}", exportAccountingBatchParameters);
+		}
+	}
 }

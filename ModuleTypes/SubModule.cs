@@ -12,8 +12,8 @@ namespace ConnectWise.Http.ModuleTypes
     /// </summary>
     public abstract class SubModule
     {
-        private string module;
-        private string endpoint;
+        private readonly string module;
+		private readonly string endpoint;
 
         internal SubModule(string module, string endpoint)
         {

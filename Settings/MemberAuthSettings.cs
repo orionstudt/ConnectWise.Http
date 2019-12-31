@@ -9,8 +9,8 @@ namespace ConnectWise.Http
 {
     public class MemberAuthSettings : IAuthSettings
     {
-        private string publicKey;
-        private string privateKey;
+        private readonly string publicKey;
+        private readonly string privateKey;
 
         public MemberAuthSettings(string publicKey, string privateKey)
         {
